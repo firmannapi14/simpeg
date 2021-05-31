@@ -57,7 +57,7 @@
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body" style="height: 300px;">
-                <h1>Loginku</h1>
+                <h1>Login firman</h1>
                 <form action="login.php" method="post" enctype="multipart/form-data">
                   <div class="input-group mb-3">
                     <div class="input-group-prepend"><span class="input-group-text">
