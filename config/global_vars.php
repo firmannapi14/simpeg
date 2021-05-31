@@ -1,7 +1,9 @@
 <?php 
 
 use Dompdf\Dompdf;
+use Ramsey\Uuid\Uuid;
 require 'vendor/autoload.php';
+$uuid4 = Uuid::uuid4();
 $dompdf = new Dompdf();
 
 function get_url() {
