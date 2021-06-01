@@ -6,6 +6,39 @@ require 'vendor/autoload.php';
 $uuid4 = Uuid::uuid4();
 $dompdf = new Dompdf();
 
+function check_user_login($id, $password) {
+    include "connection.php";
+    $pegawai = mysqli_query($conn, "SELECT * FROM tbl_auth WHERE BINARY nik='$id' AND password_current_auth='$password'");
+    $pimpinan = mysqli_query($conn, "SELECT * FROM tbl_auth WHERE BINARY nip='$id' AND password_current_auth='$password'");
+    $count_pegawai = mysqli_num_rows($pegawai);
+    $count_pimpinan = mysqli_num_rows($pimpinan);
+    if ($count_pegawai > 0) {
+        return mysqli_fetch_array($pegawai)['nik'];
+    } else if ($count_pimpinan > 0) {
+        return mysqli_fetch_array($pimpinan)['nip'];
+    }
+    return false;
+}
+
+function get_user_login($param) {
+    include "connection.php";
+    $id = encrypt_decrypt('decrypt', $_COOKIE['user_simpeg']);
+    $pegawai = mysqli_query($conn, "SELECT tbl_pegawai.nik, tbl_pegawai.nama_pegawai as nama, tbl_rules.id as id_rules, tbl_rules.nama_rules FROM tbl_pegawai 
+                                    JOIN tbl_rules ON tbl_pegawai.id_rules=tbl_rules.id
+                                    WHERE BINARY tbl_pegawai.nik='$id'") or die (mysqli_error($conn));
+    $pimpinan = mysqli_query($conn, "SELECT tbl_pimpinan.nip, tbl_pimpinan.nama_pimpinan as nama, tbl_rules.id as id_rules, tbl_rules.nama_rules FROM tbl_pimpinan 
+                                    JOIN tbl_rules ON tbl_pimpinan.id_rules=tbl_rules.id
+                                    WHERE BINARY tbl_pimpinan.nip='$id'") or die (mysqli_error($conn));
+    $count_pegawai = mysqli_num_rows($pegawai);
+    $count_pimpinan = mysqli_num_rows($pimpinan);
+
+    if ($count_pegawai > 0) {
+        return mysqli_fetch_array($pegawai)[$param];
+    } else if ($count_pimpinan > 0) {
+        return mysqli_fetch_array($pimpinan)[$param];
+    }
+}
+
 function get_url() {
     $env = "dev"; // [production, dev]
     $protocol = $env === 'production' ? 'https://' : 'http://';
@@ -24,7 +57,7 @@ function url_file() {
 
 function count_table($name) {
     include "connection.php";
-    return mysqli_num_rows(mysqli_query($conn, "SELECT * FROM $name WHERE deleted_at IS NULL"));
+    return mysqli_num_rows(mysqli_query($conn, "SELECT * FROM $name"));
 }
 
 function count_table_invoice($param) {
@@ -63,15 +96,6 @@ function encrypt_decrypt($action, $string) {
         $output = openssl_decrypt(base64_decode($string), $encrypt_method, $key, 0, $iv);
     }
     return $output;
-}
-
-function get_user_login($param) {
-    include "connection.php";
-    $id_user_login = encrypt_decrypt('decrypt', $_COOKIE['user_simkeu']);
-    $data = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM auth_login
-                                                    JOIN role_login ON auth_login.role_login_id=role_login.id
-                                                    WHERE BINARY auth_login.id='$id_user_login'"));
-    return $data[$param];
 }
 
 function label_invoices($param) {

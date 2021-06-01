@@ -1,11 +1,11 @@
 <?php 
-  if (isset($_COOKIE['user_simkeu'])) {
+  if (isset($_COOKIE['user_simpeg'])) {
     date_default_timezone_set('Asia/Jakarta');
     include "config/connection.php";
     include "config/global_vars.php";
 
     if (isset($_GET['page']) && $_GET['page'] === 'logout') {
-      setcookie('user_simkeu', '', time()-(86400 * 30), "/");
+      setcookie('user_simpeg', '', time()-(86400 * 30), "/");
     }
 ?>
 

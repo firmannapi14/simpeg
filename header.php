@@ -7,14 +7,14 @@
     <ul class="c-header-nav ml-auto mr-4">
         <li class="c-header-nav-item dropdown">
             <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span style="margin-right:10px;"><?= get_user_login('name') ?></span>
+                <span style="margin-right:10px;"><?= get_user_login('nama') ?></span>
                 <div class="c-avatar">
                     <img class="c-avatar-img" src="./dist/assets/img/user.jpg" alt="user@email.com">
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right pt-0">
                 <div class="dropdown-header bg-light py-2">
-                    <strong><?= get_user_login('role_login_name') ?></strong>
+                    <strong><?= get_user_login('nama_rules') ?></strong>
                 </div>
                 <a class="dropdown-item" href="?page=profile">
                     <svg class="c-icon mr-2">

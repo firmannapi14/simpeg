@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 01, 2021 at 12:36 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- Host: localhost
+-- Generation Time: Jun 02, 2021 at 12:53 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,12 +45,23 @@ CREATE TABLE `tbl_absensi` (
 
 CREATE TABLE `tbl_auth` (
   `id` varchar(36) NOT NULL,
-  `nik` varchar(17) NOT NULL,
+  `nik` varchar(17) DEFAULT NULL,
+  `nip` varchar(20) DEFAULT NULL,
   `password_current_auth` text DEFAULT NULL,
   `password_old_auth` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_auth`
+--
+
+INSERT INTO `tbl_auth` (`id`, `nik`, `nip`, `password_current_auth`, `password_old_auth`, `created_at`, `updated_at`) VALUES
+('130d9c2b-56f0-42ef-966c-97dd734d802d', NULL, '197706142002121009', 'bFdNVzFoaUd3dmdJd0h5UVBhbnFSQT09', NULL, '2021-06-01 17:43:34', '2021-06-01 17:43:34'),
+('7f0c6c54-91ed-4d98-851e-9eb26b61b7ce', NULL, '197907022006041022', 'Nkg0UEM5OWpURmxRM25JV3BSUjhzQT09', NULL, '2021-06-01 17:43:34', '2021-06-01 17:43:34'),
+('ab162cab-ab14-4556-9f62-598056fc2df0', '9106124512900001', NULL, 'bUN5aXpaWVNoenplQS9jRk9tRzNuQT09', NULL, '2021-06-01 17:38:48', '2021-06-01 17:38:48'),
+('e1cd2aa9-71c2-4ba1-a20b-9a921ed736a0', '9106021505700001', NULL, 'MitEOVFDK3hUczhRcXRaQk85RGhndz09', NULL, '2021-06-01 17:50:16', '2021-06-01 17:50:16');
 
 -- --------------------------------------------------------
 
@@ -168,7 +179,8 @@ ALTER TABLE `tbl_absensi`
 --
 ALTER TABLE `tbl_auth`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `nik` (`nik`);
+  ADD KEY `nik` (`nik`),
+  ADD KEY `nip` (`nip`);
 
 --
 -- Indexes for table `tbl_pegawai`
@@ -204,7 +216,8 @@ ALTER TABLE `tbl_absensi`
 -- Constraints for table `tbl_auth`
 --
 ALTER TABLE `tbl_auth`
-  ADD CONSTRAINT `tbl_auth_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `tbl_pegawai` (`nik`);
+  ADD CONSTRAINT `tbl_auth_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `tbl_pegawai` (`nik`),
+  ADD CONSTRAINT `tbl_auth_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `tbl_pimpinan` (`nip`);
 
 --
 -- Constraints for table `tbl_pegawai`

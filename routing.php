@@ -1,7 +1,7 @@
 <?php 
 
-switch(get_user_login('role_login_id')) {
-    case 1:
+switch(get_user_login('id_rules')) {
+    case '1':
         if (isset($_GET['page'])) $page=$_GET['page'];
         else $page="beranda";
 
@@ -12,13 +12,13 @@ switch(get_user_login('role_login_id')) {
         elseif ($page == 'profile')                 include("pages/profile/profile.php");
         elseif ($page == 'profileedit')             include("pages/profile/profileedit.php");
 
-        //------------------------------------ CUSTOMER ------------------------------------
-        elseif ($page == 'customer')                include("pages/customer/customer.php");
-        elseif ($page == 'customeradd')             include("pages/customer/customeradd.php");
-        elseif ($page == 'customeraddpro')          include("pages/customer/customeraddpro.php");
-        elseif ($page == 'customeredit')            include("pages/customer/customeredit.php");
-        elseif ($page == 'customereditpro')         include("pages/customer/customereditpro.php");
-        elseif ($page == 'customerdelete')          include("pages/customer/customerdelete.php");
+        //------------------------------------ PEGAWAI ------------------------------------
+        elseif ($page == 'pegawai')                 include("pages/pegawai/pegawai.php");
+        elseif ($page == 'pegawaiadd')              include("pages/pegawai/pegawaiadd.php");
+        elseif ($page == 'pegawaiaddpro')           include("pages/pegawai/pegawaiaddpro.php");
+        elseif ($page == 'pegawaiedit')             include("pages/pegawai/pegawaiedit.php");
+        elseif ($page == 'pegawaieditpro')          include("pages/pegawai/pegawaieditpro.php");
+        elseif ($page == 'pegawaidelete')           include("pages/pegawai/pegawaidelete.php");
 
         //------------------------------------ PRODUCT ------------------------------------
         elseif ($page == 'product')                 include("pages/product/product.php");
@@ -64,7 +64,7 @@ switch(get_user_login('role_login_id')) {
 
         else include("pages/404.php");
     break;
-    case 2:
+    case '2':
         if (isset($_GET['page'])) $page=$_GET['page'];
         else $page="beranda";
 
@@ -116,7 +116,7 @@ switch(get_user_login('role_login_id')) {
 
         else include("pages/404.php");
     break;
-    case 5:
+    case '3':
         if (isset($_GET['page'])) $page=$_GET['page'];
         else $page="beranda";
 
