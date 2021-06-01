@@ -81,8 +81,8 @@
                     <svg class="c-icon" style="transform:scale(2);margin-right:10px;"><use xlink:href="./coreui/icons/sprites/free.svg#cil-user"></use></svg> SIMPEG
                   </h2>
                   <p>Sistem Informasi Kepegawaian</p>
-                  <p><?= $uuid4->toString() ?></p>
-                  <p><?= encrypt_decrypt('encrypt', 'marthen1970'); ?></p>
+                  <!-- <p><?= $uuid4->toString() ?></p>
+                  <p><?= encrypt_decrypt('encrypt', 'marthen1970'); ?></p> -->
                 </div>
               </div>
             </div>
