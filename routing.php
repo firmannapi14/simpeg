@@ -68,20 +68,20 @@ switch(get_user_login('id_rules')) {
         if (isset($_GET['page'])) $page=$_GET['page'];
         else $page="beranda";
 
-        if ($page == "beranda")                     include("pages/dashboard.php");
+        if ($page == "beranda")                     include("pages/dashboard-user.php");
         elseif ($page == "logout")                  include("pages/logout.php");
 
         //------------------------------------ PROFIL ------------------------------------
         elseif ($page == 'profile')                 include("pages/profile/profile.php");
         elseif ($page == 'profileedit')             include("pages/profile/profileedit.php");
 
-        //------------------------------------ CUSTOMER ------------------------------------
-        elseif ($page == 'customer')                include("pages/customer/customer.php");
-        elseif ($page == 'customeradd')             include("pages/customer/customeradd.php");
-        elseif ($page == 'customeraddpro')          include("pages/customer/customeraddpro.php");
-        elseif ($page == 'customeredit')            include("pages/customer/customeredit.php");
-        elseif ($page == 'customereditpro')         include("pages/customer/customereditpro.php");
-        elseif ($page == 'customerdelete')          include("pages/customer/customerdelete.php");
+        //------------------------------------ LOGBOOK ------------------------------------
+        elseif ($page == 'logbook')                 include("pages/logbook/logbook.php");
+        elseif ($page == 'logbookadd')              include("pages/logbook/logbookadd.php");
+        elseif ($page == 'logbookaddpro')           include("pages/logbook/logbookaddpro.php");
+        elseif ($page == 'logbookedit')             include("pages/logbook/logbookedit.php");
+        elseif ($page == 'logbookeditpro')          include("pages/logbook/logbookeditpro.php");
+        elseif ($page == 'logbookdelete')           include("pages/logbook/logbookdelete.php");
 
         //------------------------------------ PRODUCT ------------------------------------
         elseif ($page == 'product')                 include("pages/product/product.php");

@@ -8,7 +8,7 @@
 
 <div class="c-subheader px-3">
     <ol class="breadcrumb border-0 m-0">
-        <li class="breadcrumb-item"><a href="?page=beranda">Home</a></li>
+        <li class="breadcrumb-item"><a href="?page=beranda">Beranda</a></li>
         <li class="breadcrumb-item active"><a href="?page=pegawai">Pegawai</a></li>
         <li class="breadcrumb-item active">Edit Data Pegawai</li>
     </ol>
