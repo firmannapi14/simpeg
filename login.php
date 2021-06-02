@@ -27,7 +27,7 @@
     <meta name="description" content="Sistem informasi kepegawaian - Lapan Biak">
     <meta name="author" content="Lapan Biak">
     <meta name="keyword" content="Sistem informasi kepegawaian - Lapan Biak">
-    <title>Login - SIM-KEU</title>
+    <title>Login - SIMPEG BALAI LAPAN BIAK</title>
     <link rel="icon" href="./dist/assets/favicon/favicon.png" type="image/x-icon"/>
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
@@ -79,8 +79,10 @@
                 <div>
                   <h2>
                     <svg class="c-icon" style="transform:scale(2);margin-right:10px;"><use xlink:href="./coreui/icons/sprites/free.svg#cil-user"></use></svg> SIMPEG
-                  </h2>
-                  <p>Sistem Informasi Kepegawaian</p>
+                  PPNPN <p>BALAI LAPAN BIAK</p> </h2>
+				  <p></p>
+                  <p></p>
+				  <p></p>
                   <!-- <p><?= $uuid4->toString() ?></p>
                   <p><?= encrypt_decrypt('encrypt', 'marthen1970'); ?></p> -->
                 </div>
