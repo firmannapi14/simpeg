@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 02, 2021 at 12:53 AM
+-- Generation Time: Jun 02, 2021 at 10:35 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `tbl_absensi` (
   `id` varchar(36) NOT NULL,
   `nik` varchar(17) NOT NULL,
-  `jenis_presensi` varchar(10) DEFAULT NULL,
+  `jenis_presensi` enum('WFH','WFO') DEFAULT NULL,
   `jam_masuk` timestamp NULL DEFAULT NULL,
   `jam_pulang` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -58,10 +58,41 @@ CREATE TABLE `tbl_auth` (
 --
 
 INSERT INTO `tbl_auth` (`id`, `nik`, `nip`, `password_current_auth`, `password_old_auth`, `created_at`, `updated_at`) VALUES
+('0b2bd1d1-079a-4b5c-b42e-ec26ea18ed34', '9106122309000001', NULL, 'Z3FtOGltc012OUQxL1l6Nlp1SWkwUT09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
 ('130d9c2b-56f0-42ef-966c-97dd734d802d', NULL, '197706142002121009', 'bFdNVzFoaUd3dmdJd0h5UVBhbnFSQT09', NULL, '2021-06-01 17:43:34', '2021-06-01 17:43:34'),
+('21160603-7236-48de-963c-799e3931c075', '9106122806830003', NULL, 'KytaSDF6TFI0eGxPQ29qNnhSMTRhdz09', NULL, '2021-06-02 07:25:38', '2021-06-02 07:25:38'),
+('215f07da-7cb9-4713-b4bd-ca39776a2b69', '9106120201770001', NULL, 'ZXM5UWNVMEVvQW1qdm5WVlEycHFDZz09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
+('440c668f-e2f3-4daf-ad60-8b289b71156c', '9106125804880005', NULL, 'MkRtU1FBRzFmL2V3aGQ1MGN3L3U3QT09', NULL, '2021-06-02 07:25:38', '2021-06-02 07:25:38'),
+('53feffed-5035-4f97-b72b-220d16e558e6', '9106122309770001', NULL, 'TFRSU29YQWJ5NDRrRFo5QXV1cVNvZz09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
+('6981758a-589d-4ada-b1a7-74874bf27f1b', '9106122501750001', NULL, 'OVhrZ1hvQkV3RjBaZ2RVaU5adUk0Zz09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
+('794289bd-09b7-461e-9500-5aa6391fa20d', '9106122012770001', NULL, 'US9WUlcycXMydUN0Q0IzUUJjRGVKQT09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
 ('7f0c6c54-91ed-4d98-851e-9eb26b61b7ce', NULL, '197907022006041022', 'Nkg0UEM5OWpURmxRM25JV3BSUjhzQT09', NULL, '2021-06-01 17:43:34', '2021-06-01 17:43:34'),
 ('ab162cab-ab14-4556-9f62-598056fc2df0', '9106124512900001', NULL, 'bUN5aXpaWVNoenplQS9jRk9tRzNuQT09', NULL, '2021-06-01 17:38:48', '2021-06-01 17:38:48'),
-('e1cd2aa9-71c2-4ba1-a20b-9a921ed736a0', '9106021505700001', NULL, 'MitEOVFDK3hUczhRcXRaQk85RGhndz09', NULL, '2021-06-01 17:50:16', '2021-06-01 17:50:16');
+('ba79c4b3-4f97-4522-bbbb-9e332c6907ba', '9106121302620001', NULL, 'cU5wbWJYQVhuUzhxRVdDZGdpa0hpQT09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
+('cb64d8fc-f05c-4682-9313-b2223d55dc5a', '8203211509950001', NULL, 'S0VWa3VlRzlZdS9qNXBUK0xGM3VYZz09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
+('e1cd2aa9-71c2-4ba1-a20b-9a921ed736a0', '9106021505700001', NULL, 'MitEOVFDK3hUczhRcXRaQk85RGhndz09', NULL, '2021-06-01 17:50:16', '2021-06-01 17:50:16'),
+('e293a318-0502-48c6-b3d6-0a00d9fb3da0', '9106010401880001', NULL, 'dllDZFlUZHZ4MGRvQmV0dXZtZDJpZz09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_logbook`
+--
+
+CREATE TABLE `tbl_logbook` (
+  `id` varchar(36) NOT NULL,
+  `nik` varchar(17) DEFAULT NULL,
+  `nip` varchar(20) DEFAULT NULL,
+  `tahun` varchar(4) DEFAULT NULL,
+  `bulan` varchar(2) DEFAULT NULL,
+  `tgl_selesai_pengisian` timestamp NULL DEFAULT NULL,
+  `tgl_permohonan` timestamp NULL DEFAULT NULL,
+  `tgl_disetujui` timestamp NULL DEFAULT NULL,
+  `status` enum('PP','D') DEFAULT NULL,
+  `riwayat_persetujuan` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -137,7 +168,7 @@ CREATE TABLE `tbl_pimpinan` (
 --
 
 INSERT INTO `tbl_pimpinan` (`nip`, `id_rules`, `nama_pimpinan`, `jabatan_pimpinan`, `created_at`, `updated_at`) VALUES
-('197706142002121009', 4, 'Dian Yudistira, S.Kom., M.Kom.', 'Koordinator Balai Kendali Satelit, Pengamatan Antariksa dan Atmosfer, dan Penginderaan Jauh Biak', '2021-06-01 00:43:16', '2021-06-01 00:43:16'),
+('197706142002121009', 4, 'Dian Yudistira, S.Kom., M.Kom.', 'Koordinator Balai Kendali Satelit, Pengamatan Antariksa dan Atmosfer, dan Penginderaan Jauh Biak', '2021-06-01 00:44:16', '2021-06-01 00:43:16'),
 ('197907022006041022', 3, 'Mochamad Luqman Ashary, S.Kom.', 'Sub Koordinator Bagian Tata Usaha Balai Kendali Satelit, Pengamatan Antariksa dan Atmosfer, dan Penginderaan Jauh Biak', '2021-06-01 00:43:16', '2021-06-01 00:43:16');
 
 -- --------------------------------------------------------
@@ -172,12 +203,21 @@ INSERT INTO `tbl_rules` (`id`, `nama_rules`, `deskripsi_rules`, `created_at`, `u
 -- Indexes for table `tbl_absensi`
 --
 ALTER TABLE `tbl_absensi`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `nik` (`nik`);
 
 --
 -- Indexes for table `tbl_auth`
 --
 ALTER TABLE `tbl_auth`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `nik` (`nik`),
+  ADD KEY `nip` (`nip`);
+
+--
+-- Indexes for table `tbl_logbook`
+--
+ALTER TABLE `tbl_logbook`
   ADD PRIMARY KEY (`id`),
   ADD KEY `nik` (`nik`),
   ADD KEY `nip` (`nip`);
@@ -218,6 +258,13 @@ ALTER TABLE `tbl_absensi`
 ALTER TABLE `tbl_auth`
   ADD CONSTRAINT `tbl_auth_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `tbl_pegawai` (`nik`),
   ADD CONSTRAINT `tbl_auth_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `tbl_pimpinan` (`nip`);
+
+--
+-- Constraints for table `tbl_logbook`
+--
+ALTER TABLE `tbl_logbook`
+  ADD CONSTRAINT `tbl_logbook_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `tbl_pegawai` (`nik`),
+  ADD CONSTRAINT `tbl_logbook_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `tbl_pimpinan` (`nip`);
 
 --
 -- Constraints for table `tbl_pegawai`

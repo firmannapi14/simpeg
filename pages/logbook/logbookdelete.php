@@ -1,7 +1,7 @@
 <div class="c-subheader px-3">
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="?page=beranda">Beranda</a></li>
-        <li class="breadcrumb-item active"><a href="?page=pegawai">Pegawai</a></li>
+        <li class="breadcrumb-item active"><a href="?page=logbook">Logbook</a></li>
         <li class="breadcrumb-item active">Delete Data</li>
     </ol>
 </div>
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
-                        <div class="card-header">Delete Data Pegawai</div>
+                        <div class="card-header">Delete Data Logbook</div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">

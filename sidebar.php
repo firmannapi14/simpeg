@@ -6,9 +6,10 @@
       <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="?page=beranda">
           <svg class="c-sidebar-nav-icon">
             <use xlink:href="./coreui/icons/sprites/free.svg#cil-speedometer"></use>
-          </svg> Dashboard</a>
+          </svg> Beranda</a>
       </li>
       <li class="c-sidebar-nav-title">Menu</li>
+      <?php if (get_user_login('id_rules') === '1') { ?>
       <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="?page=pegawai">
           <svg class="c-sidebar-nav-icon">
             <use xlink:href="./coreui/icons/sprites/free.svg#cil-user"></use>
@@ -24,5 +25,13 @@
             <use xlink:href="./coreui/icons/sprites/free.svg#cil-scrubber"></use>
           </svg> Rules</a>
       </li>
+      <?php } ?>
+      <?php if (get_user_login('id_rules') === '2') { ?>
+      <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="?page=logbook">
+          <svg class="c-sidebar-nav-icon">
+            <use xlink:href="./coreui/icons/sprites/free.svg#cil-book"></use>
+          </svg> Logbook</a>
+      </li>
+      <?php } ?>
     </ul>
 </div>

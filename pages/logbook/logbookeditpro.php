@@ -1,8 +1,8 @@
 <div class="c-subheader px-3">
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="?page=beranda">Beranda</a></li>
-        <li class="breadcrumb-item active"><a href="?page=customer">Customer</a></li>
-        <li class="breadcrumb-item active">Edit Data Customer</li>
+        <li class="breadcrumb-item active"><a href="?page=customer">Logbook</a></li>
+        <li class="breadcrumb-item active">Edit Data Logbook</li>
     </ol>
 </div>
 <main class="c-main">
@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
-                        <div class="card-header">Edit Data Customer</div>
+                        <div class="card-header">Edit Data Logbook</div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">

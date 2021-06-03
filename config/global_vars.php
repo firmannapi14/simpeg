@@ -6,6 +6,17 @@ require 'vendor/autoload.php';
 $uuid4 = Uuid::uuid4();
 $dompdf = new Dompdf();
 
+function get_absensi($id) {
+    include "connection.php";
+    $date_now = date('Y-m-d');
+    $absensi = mysqli_query($conn, "SELECT * FROM tbl_absensi WHERE created_at LIKE '%$date_now%' AND nik='$id'");
+    $count = mysqli_num_rows($absensi);
+    if ($count > 0) {
+        return mysqli_fetch_array($absensi);
+    }
+    return false;
+}
+
 function check_user_login($id, $password) {
     include "connection.php";
     $pegawai = mysqli_query($conn, "SELECT * FROM tbl_auth WHERE BINARY nik='$id' AND password_current_auth='$password'");
@@ -70,6 +81,39 @@ function date_ind($param){
         'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
 	$split = explode('-', $param);
 	return $split[2] . ' ' . $month[ (int)$split[1] ] . ' ' . $split[0];
+}
+
+function month_ind($param) {
+    $month = [
+        "01" => "Januari",
+        "02" => "Februari",
+        "03" => "Maret",
+        "04" => "April",
+        "05" => "Mei",
+        "06" => "Juni",
+        "07" => "Juli",
+        "08" => "Agustus",
+        "09" => "September",
+        "10" => "Oktober",
+        "11" => "November",
+        "12" => "Desember"
+    ];
+    return $month[$param];
+}
+
+function full_date_ind($param) {
+    $day = [
+        "Sun" => "Minggu",
+        "Mon" => "Senin",
+        "Tue" => "Selasa",
+        "Wed" => "Rabu",
+        "Thu" => "Kamis",
+        "Fri" => "Jumat",
+        "Sat" => "Sabtu"
+    ];
+    $month = array (1 =>   'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni','Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+	$split = explode('-', $param);
+    return $day[$split[0]].', '.$split[1] . ' ' . $month[(int)$split[2]] . ' ' . $split[3];
 }
 
 function month_year($a, $b){

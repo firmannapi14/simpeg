@@ -3,6 +3,7 @@
     date_default_timezone_set('Asia/Jakarta');
     include "config/connection.php";
     include "config/global_vars.php";
+    error_reporting(0);
 
     if (isset($_GET['page']) && $_GET['page'] === 'logout') {
       setcookie('user_simpeg', '', time()-(86400 * 30), "/");

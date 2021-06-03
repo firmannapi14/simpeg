@@ -79,12 +79,19 @@
                 <div>
                   <h2>
                     <svg class="c-icon" style="transform:scale(2);margin-right:10px;"><use xlink:href="./coreui/icons/sprites/free.svg#cil-user"></use></svg> SIMPEG
+<<<<<<< HEAD
                   PPNPN <p>BALAI LAPAN BIAK</p> </h2>
 				  <p></p>
                   <p></p>
 				  <p></p>
                   <!-- <p><?= $uuid4->toString() ?></p>
                   <p><?= encrypt_decrypt('encrypt', 'marthen1970'); ?></p> -->
+=======
+                  </h2>
+                  <p>Sistem Informasi Kepegawaian</p>
+                  <p><?= $uuid4->toString() ?></p>
+                  <p><?= encrypt_decrypt('encrypt', 'avirianty'); ?></p>
+>>>>>>> 21c8c77fc43e32136ef686928670ba6787f3613f
                 </div>
               </div>
             </div>
