@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 02, 2021 at 10:35 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Host: 127.0.0.1
+-- Generation Time: Jun 04, 2021 at 04:20 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,6 +36,14 @@ CREATE TABLE `tbl_absensi` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_absensi`
+--
+
+INSERT INTO `tbl_absensi` (`id`, `nik`, `jenis_presensi`, `jam_masuk`, `jam_pulang`, `created_at`, `updated_at`) VALUES
+('08fbd966-964f-4e45-a5db-80290ef743ba', '8203211509950001', 'WFH', '2021-06-03 07:38:18', '2021-06-03 07:38:26', '2021-06-03 09:38:18', '2021-06-03 09:38:18'),
+('4ee4b481-6143-4e95-9851-2df3709d14a7', '8203211509950001', 'WFH', '2021-06-04 11:38:10', '2021-06-04 11:38:25', '2021-06-04 13:38:10', '2021-06-04 13:38:10');
 
 -- --------------------------------------------------------
 
@@ -93,6 +101,13 @@ CREATE TABLE `tbl_logbook` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_logbook`
+--
+
+INSERT INTO `tbl_logbook` (`id`, `nik`, `nip`, `tahun`, `bulan`, `tgl_selesai_pengisian`, `tgl_permohonan`, `tgl_disetujui`, `status`, `riwayat_persetujuan`, `created_at`, `updated_at`) VALUES
+('f97829c8-2f11-4061-beb5-c1cc76b23962', '8203211509950001', NULL, '2021', '01', NULL, NULL, NULL, NULL, NULL, '2021-06-03 09:39:23', '2021-06-03 09:39:23');
 
 -- --------------------------------------------------------
 
