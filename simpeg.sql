@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 04, 2021 at 04:20 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- Host: localhost
+-- Generation Time: Jun 04, 2021 at 05:10 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,14 +37,6 @@ CREATE TABLE `tbl_absensi` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tbl_absensi`
---
-
-INSERT INTO `tbl_absensi` (`id`, `nik`, `jenis_presensi`, `jam_masuk`, `jam_pulang`, `created_at`, `updated_at`) VALUES
-('08fbd966-964f-4e45-a5db-80290ef743ba', '8203211509950001', 'WFH', '2021-06-03 07:38:18', '2021-06-03 07:38:26', '2021-06-03 09:38:18', '2021-06-03 09:38:18'),
-('4ee4b481-6143-4e95-9851-2df3709d14a7', '8203211509950001', 'WFH', '2021-06-04 11:38:10', '2021-06-04 11:38:25', '2021-06-04 13:38:10', '2021-06-04 13:38:10');
-
 -- --------------------------------------------------------
 
 --
@@ -67,19 +59,25 @@ CREATE TABLE `tbl_auth` (
 
 INSERT INTO `tbl_auth` (`id`, `nik`, `nip`, `password_current_auth`, `password_old_auth`, `created_at`, `updated_at`) VALUES
 ('0b2bd1d1-079a-4b5c-b42e-ec26ea18ed34', '9106122309000001', NULL, 'Z3FtOGltc012OUQxL1l6Nlp1SWkwUT09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
+('0c5c2973-08d8-4962-a6de-7776ebd6f549', 'DUMMY3', NULL, 'VHJiMkNPVENva3RKTFdLU1lZd2ROUT09', NULL, '2021-06-04 15:07:03', '2021-06-04 15:07:03'),
 ('130d9c2b-56f0-42ef-966c-97dd734d802d', NULL, '197706142002121009', 'bFdNVzFoaUd3dmdJd0h5UVBhbnFSQT09', NULL, '2021-06-01 17:43:34', '2021-06-01 17:43:34'),
 ('21160603-7236-48de-963c-799e3931c075', '9106122806830003', NULL, 'KytaSDF6TFI0eGxPQ29qNnhSMTRhdz09', NULL, '2021-06-02 07:25:38', '2021-06-02 07:25:38'),
 ('215f07da-7cb9-4713-b4bd-ca39776a2b69', '9106120201770001', NULL, 'ZXM5UWNVMEVvQW1qdm5WVlEycHFDZz09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
+('3b858343-9711-429e-9dab-db4e2f0354a7', 'DUMMY6', NULL, 'MjU2YmpLbVgyTkgyN0c3aWgwc3BHQT09', NULL, '2021-06-04 15:07:03', '2021-06-04 15:07:03'),
 ('440c668f-e2f3-4daf-ad60-8b289b71156c', '9106125804880005', NULL, 'MkRtU1FBRzFmL2V3aGQ1MGN3L3U3QT09', NULL, '2021-06-02 07:25:38', '2021-06-02 07:25:38'),
+('48922031-a2b4-43b4-bc35-6f8434d00530', 'DUMMY2', NULL, 'Z0JiSjJoajI1SEhCK1Uwd25nVlJwQT09', NULL, '2021-06-04 15:07:03', '2021-06-04 15:07:03'),
 ('53feffed-5035-4f97-b72b-220d16e558e6', '9106122309770001', NULL, 'TFRSU29YQWJ5NDRrRFo5QXV1cVNvZz09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
 ('6981758a-589d-4ada-b1a7-74874bf27f1b', '9106122501750001', NULL, 'OVhrZ1hvQkV3RjBaZ2RVaU5adUk0Zz09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
+('713f87d2-f870-494e-a28f-6f69dd8298b4', 'DUMMY5', NULL, 'T1NxVUZFUU5ZK0xaWHFlczU1K3lRUT09', NULL, '2021-06-04 15:07:03', '2021-06-04 15:07:03'),
 ('794289bd-09b7-461e-9500-5aa6391fa20d', '9106122012770001', NULL, 'US9WUlcycXMydUN0Q0IzUUJjRGVKQT09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
 ('7f0c6c54-91ed-4d98-851e-9eb26b61b7ce', NULL, '197907022006041022', 'Nkg0UEM5OWpURmxRM25JV3BSUjhzQT09', NULL, '2021-06-01 17:43:34', '2021-06-01 17:43:34'),
+('91584e7a-4396-4fd9-80ee-55edd69bbc34', 'DUMMY4', NULL, 'emdxbjFVeHJtZzAwRzhhUEJBcnM3QT09', NULL, '2021-06-04 15:07:03', '2021-06-04 15:07:03'),
 ('ab162cab-ab14-4556-9f62-598056fc2df0', '9106124512900001', NULL, 'bUN5aXpaWVNoenplQS9jRk9tRzNuQT09', NULL, '2021-06-01 17:38:48', '2021-06-01 17:38:48'),
 ('ba79c4b3-4f97-4522-bbbb-9e332c6907ba', '9106121302620001', NULL, 'cU5wbWJYQVhuUzhxRVdDZGdpa0hpQT09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
 ('cb64d8fc-f05c-4682-9313-b2223d55dc5a', '8203211509950001', NULL, 'S0VWa3VlRzlZdS9qNXBUK0xGM3VYZz09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
 ('e1cd2aa9-71c2-4ba1-a20b-9a921ed736a0', '9106021505700001', NULL, 'MitEOVFDK3hUczhRcXRaQk85RGhndz09', NULL, '2021-06-01 17:50:16', '2021-06-01 17:50:16'),
-('e293a318-0502-48c6-b3d6-0a00d9fb3da0', '9106010401880001', NULL, 'dllDZFlUZHZ4MGRvQmV0dXZtZDJpZz09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48');
+('e293a318-0502-48c6-b3d6-0a00d9fb3da0', '9106010401880001', NULL, 'dllDZFlUZHZ4MGRvQmV0dXZtZDJpZz09', NULL, '2021-06-02 07:23:48', '2021-06-02 07:23:48'),
+('e6df7e04-6de1-4e14-991b-9c3640947ce1', 'DUMMY1', NULL, 'Y29sT3BUQXp4dGlLZm44M0ovbHBxQT09', NULL, '2021-06-04 15:07:03', '2021-06-04 15:07:03');
 
 -- --------------------------------------------------------
 
@@ -107,7 +105,28 @@ CREATE TABLE `tbl_logbook` (
 --
 
 INSERT INTO `tbl_logbook` (`id`, `nik`, `nip`, `tahun`, `bulan`, `tgl_selesai_pengisian`, `tgl_permohonan`, `tgl_disetujui`, `status`, `riwayat_persetujuan`, `created_at`, `updated_at`) VALUES
-('f97829c8-2f11-4061-beb5-c1cc76b23962', '8203211509950001', NULL, '2021', '01', NULL, NULL, NULL, NULL, NULL, '2021-06-03 09:39:23', '2021-06-03 09:39:23');
+('2d6018b6-5ebb-4ebd-865e-5d663696eb7b', '9106021505700001', NULL, '2021', '07', NULL, NULL, NULL, NULL, NULL, '2021-06-04 11:11:41', '2021-06-04 11:11:41'),
+('9592438d-5123-44d9-82b1-8782fecf0813', '9106122806830003', NULL, '2021', '06', NULL, NULL, NULL, NULL, NULL, '2021-06-03 17:48:25', '2021-06-03 17:48:25'),
+('969b75c6-9f7d-4191-aa54-530a903c08bd', '9106122806830003', NULL, '2021', '07', NULL, NULL, NULL, NULL, NULL, '2021-06-03 18:31:11', '2021-06-03 18:31:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_logbook_items`
+--
+
+CREATE TABLE `tbl_logbook_items` (
+  `id` varchar(36) NOT NULL,
+  `id_logbook` varchar(36) NOT NULL,
+  `tanggal` date DEFAULT NULL,
+  `mulai` time DEFAULT NULL,
+  `selesai` time DEFAULT NULL,
+  `uraian_kegiatan` text DEFAULT NULL,
+  `hasil_kegiatan` text DEFAULT NULL,
+  `dokumen` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -238,6 +257,13 @@ ALTER TABLE `tbl_logbook`
   ADD KEY `nip` (`nip`);
 
 --
+-- Indexes for table `tbl_logbook_items`
+--
+ALTER TABLE `tbl_logbook_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_logbook` (`id_logbook`);
+
+--
 -- Indexes for table `tbl_pegawai`
 --
 ALTER TABLE `tbl_pegawai`
@@ -280,6 +306,12 @@ ALTER TABLE `tbl_auth`
 ALTER TABLE `tbl_logbook`
   ADD CONSTRAINT `tbl_logbook_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `tbl_pegawai` (`nik`),
   ADD CONSTRAINT `tbl_logbook_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `tbl_pimpinan` (`nip`);
+
+--
+-- Constraints for table `tbl_logbook_items`
+--
+ALTER TABLE `tbl_logbook_items`
+  ADD CONSTRAINT `tbl_logbook_items_ibfk_1` FOREIGN KEY (`id_logbook`) REFERENCES `tbl_logbook` (`id`);
 
 --
 -- Constraints for table `tbl_pegawai`
