@@ -18,6 +18,8 @@
                                     <?php 
                                         if (isset($_POST['submit'])){
                                             $id                 = $_POST['id'];
+                                            $id_old             = $_POST['id_old'];
+                                            $id_new             = $id_old != $id ? $id : $id_old;
                                             $id_auth            = $_POST['id_auth'];
                                             $rules              = $_POST['rules'];
                                             $password           = encrypt_decrypt('encrypt', $_POST['password']);
@@ -40,6 +42,7 @@
                                             $no_rekening        = $_POST['no_rekening'];
                     
                                             $insert = mysqli_query($conn, "UPDATE tbl_pegawai SET
+                                                                        nik                       = '$id_new',
                                                                         id_rules                  = $rules,
                                                                         nama_pegawai              = NULLIF('$nama', ''),
                                                                         tempat_lahir_pegawai      = NULLIF('$tempat_lahir', ''),
@@ -58,10 +61,10 @@
                                                                         no_npwp_pegawai           = NULLIF('$no_npwp', ''),
                                                                         no_bpjs_pegawai           = NULLIF('$no_bpjs', ''),
                                                                         no_rekening_pegawai       = NULLIF('$no_rekening', '')
-                                                                        WHERE nik                 = '$id'") or die (mysqli_error($conn));
+                                                                        WHERE nik                 = '$id_old'") or die (mysqli_error($conn));
 
                                             $insert2 = mysqli_query($conn, "UPDATE tbl_auth SET
-                                                                        nik                   = '$id',
+                                                                        nik                   = '$id_new',
                                                                         password_current_auth = NULLIF('$password', '')
                                                                         WHERE id              = '$id_auth'") or die (mysqli_error($conn));
                                             

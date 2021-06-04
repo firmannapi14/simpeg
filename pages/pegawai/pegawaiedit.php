@@ -29,7 +29,8 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <input class="form-control" type="text" placeholder="NIK ..." name="id" autocomplete="OFF" value="<?= $data['nik'] ?>" required>
-                                                    <input class="form-control" type="hidden" name="id_auth" value="<?= $data['id'] ?>">
+                                                    <input type="hidden" name="id_old" autocomplete="OFF" value="<?= $data['nik'] ?>" required>
+                                                    <input type="hidden" name="id_auth" value="<?= $data['id'] ?>">
                                                 </div>
                                             </div>
                                         </div>
