@@ -20,11 +20,6 @@
             <use xlink:href="./coreui/icons/sprites/free.svg#cil-user"></use>
           </svg>Pimpinan</a>
       </li>
-      <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="?page=rules">
-          <svg class="c-sidebar-nav-icon">
-            <use xlink:href="./coreui/icons/sprites/free.svg#cil-scrubber"></use>
-          </svg> Rules</a>
-      </li>
       <?php } ?>
       <?php if (get_user_login('id_rules') === '2') { ?>
       <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="?page=logbook">

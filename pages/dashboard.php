@@ -33,19 +33,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card text-white bg-gradient-success">
-                        <div class="card-body">
-                            <div class="text-muted text-right mb-4">
-                                <svg class="c-icon c-icon-3xl">
-                                    <use xlink:href="./coreui/icons/sprites/free.svg#cil-scrubber"></use>
-                                </svg>
-                            </div>
-                            <div class="text-value-lg"><?= count_table('tbl_rules') ?></div>
-                            <small class="text-muted text-uppercase font-weight-bold">Rules</small>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

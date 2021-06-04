@@ -1,8 +1,8 @@
 <div class="c-subheader px-3">
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="?page=beranda">Beranda</a></li>
-        <li class="breadcrumb-item active"><a href="?page=customer">Customer</a></li>
-        <li class="breadcrumb-item active">Edit Data Customer</li>
+        <li class="breadcrumb-item active"><a href="?page=pegawai">Pegawai</a></li>
+        <li class="breadcrumb-item active">Edit Data</li>
     </ol>
 </div>
 <main class="c-main">
@@ -11,32 +11,66 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
-                        <div class="card-header">Edit Data Customer</div>
+                        <div class="card-header">Edit Data Pegawai</div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <?php 
                                         if (isset($_POST['submit'])){
-                                            $id         = $_POST['id'];
-                                            $cust_name  = $_POST['customer_name'];
-                                            $cust_phone = $_POST['customer_phone'];
-                                            $cust_addr  = $_POST['customer_address'];
-
-                                            $updated_at = date('Y-m-d H:i:s');
+                                            $id                 = $_POST['id'];
+                                            $id_auth            = $_POST['id_auth'];
+                                            $rules              = $_POST['rules'];
+                                            $password           = encrypt_decrypt('encrypt', $_POST['password']);
+                                            $nama               = $_POST['nama'];
+                                            $tempat_lahir       = $_POST['tempat_lahir'];
+                                            $tanggal_lahir      = $_POST['tanggal_lahir'];
+                                            $jenis_kelamin      = $_POST['jenis_kelamin'];
+                                            $golongan_darah     = $_POST['golongan_darah'];
+                                            $alamat             = $_POST['alamat'];
+                                            $status_pernikahan  = $_POST['status_pernikahan'];
+                                            $agama              = $_POST['agama'];
+                                            $pekerjaan          = $_POST['pekerjaan'];
+                                            $kewarganegaraan    = $_POST['kewarganegaraan'];
+                                            $pendidikan         = $_POST['pendidikan'];
+                                            $jurusan            = $_POST['jurusan'];
+                                            $jabatan            = $_POST['jabatan'];
+                                            $no_tlp             = $_POST['no_tlp'];
+                                            $no_npwp            = $_POST['no_npwp'];
+                                            $no_bpjs            = $_POST['no_bpjs'];
+                                            $no_rekening        = $_POST['no_rekening'];
                     
-                                            $insert = mysqli_query($conn, "UPDATE customers SET
-                                                    customer_name       = '$cust_name',
-                                                    customer_phone      = NULLIF('$cust_phone', ''),
-                                                    customer_address    = NULLIF('$cust_addr', ''),
-                                                    updated_at          = '$updated_at'
-                                                    WHERE id            = '$id'") or die (mysqli_error($conn));
+                                            $insert = mysqli_query($conn, "UPDATE tbl_pegawai SET
+                                                                        id_rules                  = $rules,
+                                                                        nama_pegawai              = NULLIF('$nama', ''),
+                                                                        tempat_lahir_pegawai      = NULLIF('$tempat_lahir', ''),
+                                                                        tanggal_lahir_pegawai     = NULLIF('$tanggal_lahir', ''),
+                                                                        jenis_kelamin_pegawai     = NULLIF('$jenis_kelamin', ''),
+                                                                        golongan_darah_pegawai    = NULLIF('$golongan_darah', ''),
+                                                                        alamat_pegawai            = NULLIF('$alamat', ''),
+                                                                        status_pernikahan_pegawai = NULLIF('$status_pernikahan', ''),
+                                                                        agama_pegawai             = NULLIF('$agama', ''),
+                                                                        pekerjaan_pegawai         = NULLIF('$pekerjaan', ''),
+                                                                        kewarganegaraan_pegawai   = NULLIF('$kewarganegaraan', ''),
+                                                                        pendidikan_pegawai        = NULLIF('$pendidikan', ''),
+                                                                        jurusan_pegawai           = NULLIF('$jurusan', ''),
+                                                                        jabatan_pegawai           = NULLIF('$jabatan', ''),
+                                                                        no_telepon_pegawai        = NULLIF('$no_tlp', ''),
+                                                                        no_npwp_pegawai           = NULLIF('$no_npwp', ''),
+                                                                        no_bpjs_pegawai           = NULLIF('$no_bpjs', ''),
+                                                                        no_rekening_pegawai       = NULLIF('$no_rekening', '')
+                                                                        WHERE nik                 = '$id'") or die (mysqli_error($conn));
+
+                                            $insert2 = mysqli_query($conn, "UPDATE tbl_auth SET
+                                                                        nik                   = '$id',
+                                                                        password_current_auth = NULLIF('$password', '')
+                                                                        WHERE id              = '$id_auth'") or die (mysqli_error($conn));
                                             
-                                            if ($insert){
-                                                echo    '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Data has been saved.'.
+                                            if ($insert && $insert2) {
+                                                echo    '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Data berhasil disimpan.'.
                                                             '<button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'.
                                                         '</div>';
                                                 echo "<meta http-equiv='refresh' content='2;
-                                                url=?page=customer'>";
+                                                url=?page=pegawai'>";
                                             }
                                         }
                                     ?>

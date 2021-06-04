@@ -17,7 +17,7 @@
                                         <div class="card-body">
                                             <h3>Hari ini: </h3>
                                             <h3><?= full_date_ind(date('D-d-m-Y')) ?></h3>
-                                            <h3 class="demo"></h3>
+                                            <h3><span class="badge badge-secondary hour" style="margin-right: 5px;"></span><span class="badge badge-secondary minute" style="margin-right: 5px;"></span><span class="badge badge-secondary second" style="width: 38px;"></span></h3>
                                             <form action="?page=beranda" method="post" enctype="multipart/form-data">
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -110,8 +110,9 @@
 $(document).ready(function(){
     var timer = setInterval(clock, 1)
     function clock(){
-        $(".demo").html(new Date().getHours() +':'+ new Date().getMinutes() +':'+ new Date().getSeconds());
-
+        $(".second").html(new Date().getSeconds() < 10 ? '0'+new Date().getSeconds() : new Date().getSeconds());
+        $(".minute").html(new Date().getMinutes() < 10 ? '0'+new Date().getMinutes() : new Date().getMinutes());
+        $(".hour").html(new Date().getHours() < 10 ? '0'+new Date().getHours() : new Date().getHours());
     }
 });
 </script>

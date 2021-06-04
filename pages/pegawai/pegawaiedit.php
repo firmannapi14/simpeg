@@ -20,7 +20,7 @@
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
                         <div class="card-header">Edit Data Pegawai</div>
-                        <form action="?page=customereditpro" method="post" enctype="multipart/form-data">
+                        <form action="?page=pegawaieditpro" method="post" enctype="multipart/form-data">
                         <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-8">
@@ -29,6 +29,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <input class="form-control" type="text" placeholder="NIK ..." name="id" autocomplete="OFF" value="<?= $data['nik'] ?>" required>
+                                                    <input class="form-control" type="hidden" name="id_auth" value="<?= $data['id'] ?>">
                                                 </div>
                                             </div>
                                         </div>

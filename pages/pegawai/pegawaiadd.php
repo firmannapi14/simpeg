@@ -12,7 +12,7 @@
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
                         <div class="card-header">Tambah Data Pegawai</div>
-                        <form action="?page=customeraddpro" method="post" enctype="multipart/form-data">
+                        <form action="?page=pegawaiaddpro" method="post" enctype="multipart/form-data">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-8">

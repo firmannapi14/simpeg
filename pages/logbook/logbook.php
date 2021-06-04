@@ -27,7 +27,7 @@
                                                 <th>Bulan</th>
                                                 <th>Tanggal Selesai Pengisian</th>
                                                 <th>Status Terakhir</th>
-                                                <!-- <th>Aksi</th> -->
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -44,10 +44,11 @@
                                                 <td><?= !empty($data['bulan']) ? month_ind($data['bulan']) : '-' ?></td>
                                                 <td><?= !empty($data['tgl_selesai_pengisian']) ? date_ind($data['tgl_selesai_pengisian']) : '-' ?></td>
                                                 <td><?= !empty($data['status']) ? $data['status'] : '-' ?></td>
-                                                <!-- <td>
-                                                    <a href="?page=pegawaiedit&id=<?= $data['nik'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> edit</a>
-                                                    <a href="?page=pegawaidelete&id=<?= $data['nik'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> delete</a>
-                                                </td> -->
+                                                <td>
+                                                    <a href="?page=logbookisi&nik=<?= $data['nik'] ?>&id=<?= $data['id'] ?>" class="btn btn-success btn-sm"><i class="fa fa-gear"></i> kelola</a>
+                                                    <a href="?page=logbookedit&id=<?= $data['nik'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> edit</a>
+                                                    <a href="?page=logbookdelete&id=<?= $data['nik'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> delete</a>
+                                                </td>
                                             </tr>
                                         <?php $no++; } ?>
                                         </tbody>

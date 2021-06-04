@@ -1,4 +1,6 @@
-`<?php 
+<?php 
+  if (!isset($_COOKIE['user_simpeg'])) {
+
   include 'config/connection.php';
   include 'config/global_vars.php';
   date_default_timezone_set('Asia/Jakarta');
@@ -82,7 +84,7 @@
                   </h2>
                   <p>BALAI LAPAN BIAK</p>
                   <!-- <p><?= $uuid4->toString() ?></p>
-                  <p><?= encrypt_decrypt('encrypt', 'marthen1970'); ?></p> -->
+                  <p><?= encrypt_decrypt('encrypt', 'susanto'); ?></p> -->
                 </div>
               </div>
             </div>
@@ -95,4 +97,6 @@
     <script src="./coreui/icons/js/svgxuse.min.js"></script>
   </body>
 </html>
-`
+<?php } else {
+echo"<meta http-equiv='refresh' content='1;url=index.php?page=beranda'>";
+} ?>
