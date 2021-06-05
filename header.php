@@ -18,7 +18,7 @@
                 </div>
                 <a class="dropdown-item" href="?page=profile">
                     <svg class="c-icon mr-2">
-                        <use xlink:href="./coreui/icons/sprites/free.svg#cil-user"></use>
+                        <use xlink:href="./coreui/icons/sprites/free.svg#cil-contact"></use>
                     </svg> Profile
                 </a>
                 <div class="dropdown-divider"></div>

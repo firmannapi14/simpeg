@@ -8,9 +8,21 @@ switch(get_user_login('id_rules')) {
         if ($page == "beranda")                     include("pages/dashboard.php");
         elseif ($page == "logout")                  include("pages/logout.php");
 
+        //------------------------------------ ABSENSI ------------------------------------
+        elseif ($page == 'absensi')                 include("pages/absensi/absensi.php");
+
         //------------------------------------ PROFIL ------------------------------------
         elseif ($page == 'profile')                 include("pages/profile/profile.php");
         elseif ($page == 'profileedit')             include("pages/profile/profileedit.php");
+        elseif ($page == 'profileeditpro')          include("pages/profile/profileeditpro.php");
+
+        //------------------------------------ LOGBOOK ------------------------------------
+        elseif ($page == 'logbook')                 include("pages/logbook/logbook.php");
+        elseif ($page == 'logbookadd')              include("pages/logbook/logbookadd.php");
+        elseif ($page == 'logbookaddpro')           include("pages/logbook/logbookaddpro.php");
+        elseif ($page == 'logbookedit')             include("pages/logbook/logbookedit.php");
+        elseif ($page == 'logbookeditpro')          include("pages/logbook/logbookeditpro.php");
+        elseif ($page == 'logbookdelete')           include("pages/logbook/logbookdelete.php");
 
         //------------------------------------ PEGAWAI ------------------------------------
         elseif ($page == 'pegawai')                 include("pages/pegawai/pegawai.php");
@@ -20,47 +32,13 @@ switch(get_user_login('id_rules')) {
         elseif ($page == 'pegawaieditpro')          include("pages/pegawai/pegawaieditpro.php");
         elseif ($page == 'pegawaidelete')           include("pages/pegawai/pegawaidelete.php");
 
-        //------------------------------------ PRODUCT ------------------------------------
-        elseif ($page == 'product')                 include("pages/product/product.php");
-        elseif ($page == 'productadd')              include("pages/product/productadd.php");
-        elseif ($page == 'productaddpro')           include("pages/product/productaddpro.php");
-        elseif ($page == 'productedit')             include("pages/product/productedit.php");
-        elseif ($page == 'producteditpro')          include("pages/product/producteditpro.php");
-        elseif ($page == 'productdelete')           include("pages/product/productdelete.php");
-
-        //------------------------------------ ROLE ------------------------------------
-        elseif ($page == 'role')                    include("pages/role/role.php");
-        elseif ($page == 'roleadd')                 include("pages/role/roleadd.php");
-        elseif ($page == 'roleaddpro')              include("pages/role/roleaddpro.php");
-        elseif ($page == 'roleedit')                include("pages/role/roleedit.php");
-        elseif ($page == 'roleeditpro')             include("pages/role/roleeditpro.php");
-        elseif ($page == 'roledelete')              include("pages/role/roledelete.php");
-
-        //------------------------------------ USER ------------------------------------
-        elseif ($page == 'user')                    include("pages/user/user.php");
-        elseif ($page == 'useradd')                 include("pages/user/useradd.php");
-        elseif ($page == 'useraddpro')              include("pages/user/useraddpro.php");
-        elseif ($page == 'useredit')                include("pages/user/useredit.php");
-        elseif ($page == 'usereditpro')             include("pages/user/usereditpro.php");
-        elseif ($page == 'userdelete')              include("pages/user/userdelete.php");
-
-        //------------------------------------ REG ------------------------------------
-        elseif ($page == 'reg')                     include("pages/reg/reg.php");
-        elseif ($page == 'regadd')                  include("pages/reg/regadd.php");
-        elseif ($page == 'regaddpro')               include("pages/reg/regaddpro.php");
-        elseif ($page == 'regedit')                 include("pages/reg/regedit.php");
-        elseif ($page == 'regeditpro')              include("pages/reg/regeditpro.php");
-        elseif ($page == 'regdelete')               include("pages/reg/regdelete.php");
-
-        //------------------------------------ INVOICE ------------------------------------
-        elseif ($page == 'invoice')                 include("pages/invoice/invoice.php");
-        elseif ($page == 'invoiceprint')            include("pages/invoice/invoiceprint.php");
-
-        //------------------------------------ INVOICE PRINT LOG ------------------------------------
-        elseif ($page == 'invoiceprintlog')         include("pages/invoiceprintlog/invoiceprintlog.php");
-
-        //------------------------------------ INVOICE ARSIP LOG ------------------------------------
-        elseif ($page == 'invoicearsip')            include("pages/invoicearsip/invoicearsip.php");
+        //------------------------------------ PIMPINAN ------------------------------------
+        elseif ($page == 'pimpinan')                include("pages/pimpinan/pimpinan.php");
+        elseif ($page == 'pimpinanadd')             include("pages/pimpinan/pimpinanadd.php");
+        elseif ($page == 'pimpinanaddpro')          include("pages/pimpinan/pimpinanaddpro.php");
+        elseif ($page == 'pimpinanedit')            include("pages/pimpinan/pimpinanedit.php");
+        elseif ($page == 'pimpinaneditpro')         include("pages/pimpinan/pimpinaneditpro.php");
+        elseif ($page == 'pimpinandelete')          include("pages/pimpinan/pimpinandelete.php");
 
         else include("pages/404.php");
     break;
@@ -68,12 +46,16 @@ switch(get_user_login('id_rules')) {
         if (isset($_GET['page'])) $page=$_GET['page'];
         else $page="beranda";
 
-        if ($page == "beranda")                     include("pages/dashboard-user.php");
+        if ($page == "beranda")                     include("pages/dashboard.php");
         elseif ($page == "logout")                  include("pages/logout.php");
+
+        //------------------------------------ ABSENSI ------------------------------------
+        elseif ($page == 'absensi')                 include("pages/absensi/absensi.php");
 
         //------------------------------------ PROFIL ------------------------------------
         elseif ($page == 'profile')                 include("pages/profile/profile.php");
         elseif ($page == 'profileedit')             include("pages/profile/profileedit.php");
+        elseif ($page == 'profileeditpro')          include("pages/profile/profileeditpro.php");
 
         //------------------------------------ LOGBOOK ------------------------------------
         elseif ($page == 'logbook')                 include("pages/logbook/logbook.php");
@@ -102,24 +84,9 @@ switch(get_user_login('id_rules')) {
         elseif ($page == "logout")                  include("pages/logout.php");
 
         //------------------------------------ PROFIL ------------------------------------
-        elseif ($page == 'profile')                 include("pages/profile/profile.php");
-        elseif ($page == 'profileedit')             include("pages/profile/profileedit.php");
-
-        //------------------------------------ CUSTOMER ------------------------------------
-        elseif ($page == 'customer')                include("pages/customer/customer.php");
-
-        //------------------------------------ PRODUCT ------------------------------------
-        elseif ($page == 'product')                 include("pages/product/product.php");
-
-        //------------------------------------ USER ------------------------------------
-        elseif ($page == 'user')                    include("pages/user/user.php");
-
-        //------------------------------------ REG ------------------------------------
-        elseif ($page == 'reg')                     include("pages/reg/reg.php");
-
-        //------------------------------------ INVOICE ------------------------------------
-        elseif ($page == 'invoice')                 include("pages/invoice/invoice.php");
-        elseif ($page == 'invoiceprint')            include("pages/invoice/invoiceprint.php");
+        elseif ($page == 'profile')                 include("pages/profilelead/profilelead.php");
+        elseif ($page == 'profileedit')             include("pages/profilelead/profileleadedit.php");
+        elseif ($page == 'profileeditpro')          include("pages/profilelead/profileleadeditpro.php");
 
         else include("pages/404.php");
     break;
@@ -131,8 +98,9 @@ switch(get_user_login('id_rules')) {
         elseif ($page == "logout")                  include("pages/logout.php");
 
         //------------------------------------ PROFIL ------------------------------------
-        elseif ($page == 'profile')                 include("pages/profile/profile.php");
-        elseif ($page == 'profileedit')             include("pages/profile/profileedit.php");
+        elseif ($page == 'profile')                 include("pages/profilelead/profilelead.php");
+        elseif ($page == 'profileedit')             include("pages/profilelead/profileleadedit.php");
+        elseif ($page == 'profileeditpro')          include("pages/profilelead/profileleadeditpro.php");
 
         //------------------------------------ CUSTOMER ------------------------------------
         elseif ($page == 'customer')                include("pages/customer/customer.php");
