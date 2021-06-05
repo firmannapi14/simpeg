@@ -55,7 +55,7 @@
                                         $nik = get_user_login('nik');
                                         $q = mysqli_query($conn, "SELECT * FROM tbl_pegawai
                                                                 JOIN tbl_rules ON tbl_pegawai.id_rules=tbl_rules.id
-                                                                WHERE tbl_pegawai.nik <> '$nik'");
+                                                                ORDER BY tbl_pegawai.updated_at DESC");
                                         while($data=mysqli_fetch_array($q)){ ?>
                                             <tr>
                                                 <td><?= $no ?></td>
@@ -80,8 +80,8 @@
                                                 <td><?= !empty($data['no_rekening_pegawai']) ? $data['no_rekening_pegawai'] : '-' ?></td>
                                                 <?php if (get_user_login('id_rules') === '1') { ?>
                                                 <td>
-                                                    <a href="?page=pegawaiedit&id=<?= $data['nik'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> edit</a>
-                                                    <a href="?page=pegawaidelete&id=<?= $data['nik'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> delete</a>
+                                                    <a href="?page=pegawaiedit&id=<?= $data[0] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> edit</a>
+                                                    <a href="?page=pegawaidelete&id=<?= $data[0] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> delete</a>
                                                 </td>
                                                 <?php } ?>
                                             </tr>

@@ -64,14 +64,19 @@
                     <input type="submit" name="submit" class="btn btn-primary btn-block" value="Login">
                     </div>
                   </div>
-                  <div class="row">
-                  <?php 
-                  
-                  echo '<pre>';
-                  print_r($status_message);
-                  echo '</pre>';
-
-                  ?>
+                  <div class="row mt-2">
+                    <div class="col-md-12">
+                      <?php 
+                      if (!empty($status_message) && $status_message === 'failed') { ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">Login Gagal
+                          <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                      <?php } else if (!empty($status_message) && $status_message !== 'failed') { ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">Login Berhasil
+                          <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                      <?php } ?>
+                    </div>
                   </div>
                 </form>
               </div>
@@ -83,8 +88,8 @@
                     <svg class="c-icon" style="transform:scale(2);margin-right:10px;"><use xlink:href="./coreui/icons/sprites/free.svg#cil-user"></use></svg> SIMPEG PPNPN
                   </h2>
                   <p>BALAI LAPAN BIAK</p>
-                  <!-- <p><?= $uuid4->toString() ?></p>
-                  <p><?= encrypt_decrypt('encrypt', 'susanto'); ?></p> -->
+                  <!-- <p><?= $uuid4->toString() ?></p> -->
+                  <!-- <p><?= encrypt_decrypt('encrypt', 'susanto'); ?></p> -->
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
 <?php
     $g = mysqli_query($conn, "SELECT * FROM tbl_pimpinan
-                            JOIN tbl_auth ON tbl_pimpinan.nip=tbl_auth.nip
-                            WHERE tbl_pimpinan.nip='$_GET[id]'");
+                            JOIN tbl_auth ON tbl_pimpinan.id=tbl_auth.id_pimpinan
+                            WHERE tbl_pimpinan.id='$_GET[id]'");
     $data = mysqli_fetch_array($g);
 ?>
 
@@ -28,8 +28,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <input class="form-control" type="text" placeholder="NIK ..." name="id" autocomplete="OFF" value="<?= $data['nip'] ?>" required>
-                                                    <input type="hidden" name="id_old" autocomplete="OFF" value="<?= $data['nip'] ?>" required>
-                                                    <input type="hidden" name="id_auth" value="<?= $data['id'] ?>">
+                                                    <input type="hidden" name="id_user" value="<?= $data['id_pimpinan'] ?>">
                                                 </div>
                                             </div>
                                         </div>

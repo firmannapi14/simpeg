@@ -1,6 +1,6 @@
 <?php 
   if (isset($_COOKIE['user_simpeg'])) {
-    date_default_timezone_set('Asia/Jakarta');
+    date_default_timezone_set('Asia/Jayapura');
     include "config/connection.php";
     include "config/global_vars.php";
     error_reporting(0);

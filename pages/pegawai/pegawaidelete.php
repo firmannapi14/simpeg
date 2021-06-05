@@ -26,8 +26,8 @@
                                     <?php 
                                         if (isset($_POST['submit'])){
                                             $id         = $_POST['id'];
-                                            $delete     = mysqli_query($conn, "DELETE FROM tbl_auth WHERE nik='$id'");
-                                            $delete2    = mysqli_query($conn, "DELETE FROM tbl_pegawai WHERE nik='$id'");
+                                            $delete     = mysqli_query($conn, "DELETE FROM tbl_auth WHERE id_pegawai='$id'");
+                                            $delete2    = mysqli_query($conn, "DELETE FROM tbl_pegawai WHERE id='$id'");
                                             if ($delete && $delete2){
                                                 echo    '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Data berhasil dihapus.'.
                                                             '<button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'.

@@ -18,9 +18,7 @@
                                     <?php 
                                         if (isset($_POST['submit'])){
                                             $id                 = $_POST['id'];
-                                            $id_old             = $_POST['id_old'];
-                                            $id_new             = $id_old != $id ? $id : $id_old;
-                                            $id_auth            = $_POST['id_auth'];
+                                            $id_user            = $_POST['id_user'];
                                             $rules              = $_POST['rules'];
                                             $password           = encrypt_decrypt('encrypt', $_POST['password']);
                                             $nama               = $_POST['nama'];
@@ -40,9 +38,10 @@
                                             $no_npwp            = $_POST['no_npwp'];
                                             $no_bpjs            = $_POST['no_bpjs'];
                                             $no_rekening        = $_POST['no_rekening'];
+                                            $datenow            = date('Y-m-d H:i:s');
                     
                                             $insert = mysqli_query($conn, "UPDATE tbl_pegawai SET
-                                                                        nik                       = '$id_new',
+                                                                        nik                       = '$id',
                                                                         id_rules                  = $rules,
                                                                         nama_pegawai              = NULLIF('$nama', ''),
                                                                         tempat_lahir_pegawai      = NULLIF('$tempat_lahir', ''),
@@ -60,13 +59,13 @@
                                                                         no_telepon_pegawai        = NULLIF('$no_tlp', ''),
                                                                         no_npwp_pegawai           = NULLIF('$no_npwp', ''),
                                                                         no_bpjs_pegawai           = NULLIF('$no_bpjs', ''),
-                                                                        no_rekening_pegawai       = NULLIF('$no_rekening', '')
-                                                                        WHERE nik                 = '$id_old'") or die (mysqli_error($conn));
+                                                                        no_rekening_pegawai       = NULLIF('$no_rekening', ''),
+                                                                        updated_at                = NULLIF('$datenow', '')
+                                                                        WHERE id                  = '$id_user'") or die (mysqli_error($conn));
 
                                             $insert2 = mysqli_query($conn, "UPDATE tbl_auth SET
-                                                                        nik                   = '$id_new',
                                                                         password_current_auth = NULLIF('$password', '')
-                                                                        WHERE id              = '$id_auth'") or die (mysqli_error($conn));
+                                                                        WHERE id_pegawai          = '$id_user'") or die (mysqli_error($conn));
                                             
                                             if ($insert && $insert2) {
                                                 echo    '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Data berhasil disimpan.'.

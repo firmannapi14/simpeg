@@ -37,9 +37,9 @@
                                         <tbody>
                                         <?php 
                                         $no = 1;
-                                        $nik = get_user_login('nik');
                                         $q = mysqli_query($conn, "SELECT * FROM tbl_pimpinan
-                                                                JOIN tbl_rules ON tbl_pimpinan.id_rules=tbl_rules.id");
+                                                                JOIN tbl_rules ON tbl_pimpinan.id_rules=tbl_rules.id
+                                                                ORDER BY tbl_pimpinan.updated_at DESC");
                                         while($data=mysqli_fetch_array($q)){ ?>
                                             <tr>
                                                 <td><?= $no ?></td>
@@ -49,8 +49,8 @@
                                                 <td><?= !empty($data['jabatan_pimpinan']) ? $data['jabatan_pimpinan'] : '-' ?></td>
                                                 <?php if (get_user_login('id_rules') === '1') { ?>
                                                 <td>
-                                                    <a href="?page=pimpinanedit&id=<?= $data['nip'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> edit</a>
-                                                    <a href="?page=pimpinandelete&id=<?= $data['nip'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> delete</a>
+                                                    <a href="?page=pimpinanedit&id=<?= $data[0] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> edit</a>
+                                                    <a href="?page=pimpinandelete&id=<?= $data[0] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> delete</a>
                                                 </td>
                                                 <?php } ?>
                                             </tr>

@@ -1,6 +1,6 @@
 <?php 
-    $id = get_user_login('nik');
-    $g = mysqli_query($conn, "SELECT * FROM tbl_pegawai WHERE nik='$id'");
+    $id = get_user_login('id_user');
+    $g = mysqli_query($conn, "SELECT * FROM tbl_pegawai WHERE id='$id'");
     $data = mysqli_fetch_array($g);
 ?>
 
@@ -17,7 +17,7 @@
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
                         <div class="card-header">Data Profile
-                        <a href="?page=profileedit&id=<?= $data['nik'] ?>" class="btn btn-primary btn-sm float-right"><i class="fa fa-edit"></i> Edit Data</a>
+                        <a href="?page=profileedit&id=<?= $data['id'] ?>" class="btn btn-primary btn-sm float-right"><i class="fa fa-edit"></i> Edit Data</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-responsive-sm table-striped">
@@ -40,7 +40,7 @@
                                     </tr>
                                     <tr>
                                         <td width="200px" style="font-weight: bold;">Jenis Kelamin</td>
-                                        <td><?= empty($data['jenis_kelamin_pegawai']) ? '-' : $data['jenis_kelamin_pegawai'] === 'P' ? 'Laki-Laki' : 'Perempuan' ?></td>
+                                        <td><?= empty($data['jenis_kelamin_pegawai']) ? '-' : $data['jenis_kelamin_pegawai'] === 'L' ? 'Laki-Laki' : 'Perempuan' ?></td>
                                     </tr>
                                     <tr>
                                         <td width="200px" style="font-weight: bold;">Golongan Darah</td>

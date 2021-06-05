@@ -18,6 +18,7 @@
                                     <?php 
                                         if (isset($_POST['submit'])){
                                             $id                 = $_POST['id'];
+                                            $id_user            = $uuid4->toString();
                                             $id_auth            = $uuid4->toString();
                                             $rules              = $_POST['rules'];
                                             $password           = encrypt_decrypt('encrypt', $_POST['password']);
@@ -38,8 +39,10 @@
                                             $no_npwp            = $_POST['no_npwp'];
                                             $no_bpjs            = $_POST['no_bpjs'];
                                             $no_rekening        = $_POST['no_rekening'];
+                                            $datenow            = date('Y-m-d H:i:s');
                     
                                             $insert = mysqli_query($conn, "INSERT INTO tbl_pegawai SET
+                                                                        id                        = '$id_user',
                                                                         nik                       = '$id',
                                                                         id_rules                  = $rules,
                                                                         nama_pegawai              = NULLIF('$nama', ''),
@@ -58,11 +61,13 @@
                                                                         no_telepon_pegawai        = NULLIF('$no_tlp', ''),
                                                                         no_npwp_pegawai           = NULLIF('$no_npwp', ''),
                                                                         no_bpjs_pegawai           = NULLIF('$no_bpjs', ''),
-                                                                        no_rekening_pegawai       = NULLIF('$no_rekening', '')") or die (mysqli_error($conn));
+                                                                        no_rekening_pegawai       = NULLIF('$no_rekening', ''),
+                                                                        created_at                = '$datenow',
+                                                                        updated_at                = '$datenow'") or die (mysqli_error($conn));
 
                                             $insert2 = mysqli_query($conn, "INSERT INTO tbl_auth SET
                                                                         id                    = '$id_auth',
-                                                                        nik                   = '$id',
+                                                                        id_pegawai            = '$id_user',
                                                                         password_current_auth = NULLIF('$password', '')") or die (mysqli_error($conn));
                                             
                                             if ($insert && $insert2) {

@@ -19,14 +19,18 @@ function get_absensi($id) {
 
 function check_user_login($id, $password) {
     include "connection.php";
-    $pegawai = mysqli_query($conn, "SELECT * FROM tbl_auth WHERE BINARY nik='$id' AND password_current_auth='$password'");
-    $pimpinan = mysqli_query($conn, "SELECT * FROM tbl_auth WHERE BINARY nip='$id' AND password_current_auth='$password'");
+    $pegawai = mysqli_query($conn, "SELECT * FROM tbl_pegawai
+                                    JOIN tbl_auth ON tbl_pegawai.id=tbl_auth.id_pegawai
+                                    WHERE BINARY tbl_pegawai.nik='$id' AND tbl_auth.password_current_auth='$password'");
+    $pimpinan = mysqli_query($conn, "SELECT * FROM tbl_pimpinan
+                                    JOIN tbl_auth ON tbl_pimpinan.id=tbl_auth.id_pimpinan
+                                    WHERE BINARY tbl_pimpinan.nip='$id' AND tbl_auth.password_current_auth='$password'");
     $count_pegawai = mysqli_num_rows($pegawai);
     $count_pimpinan = mysqli_num_rows($pimpinan);
     if ($count_pegawai > 0) {
-        return mysqli_fetch_array($pegawai)['nik'];
+        return mysqli_fetch_array($pegawai)['id_pegawai'];
     } else if ($count_pimpinan > 0) {
-        return mysqli_fetch_array($pimpinan)['nip'];
+        return mysqli_fetch_array($pimpinan)['id_pimpinan'];
     }
     return false;
 }
@@ -34,12 +38,13 @@ function check_user_login($id, $password) {
 function get_user_login($param) {
     include "connection.php";
     $id = encrypt_decrypt('decrypt', $_COOKIE['user_simpeg']);
-    $pegawai = mysqli_query($conn, "SELECT tbl_pegawai.nik, tbl_pegawai.nama_pegawai as nama, tbl_rules.id as id_rules, tbl_rules.nama_rules FROM tbl_pegawai 
+    // echo $id;
+    $pegawai = mysqli_query($conn, "SELECT tbl_pegawai.nik, tbl_pegawai.id as id_user, tbl_pegawai.nama_pegawai as nama, tbl_rules.id as id_rules, tbl_rules.nama_rules FROM tbl_pegawai 
                                     JOIN tbl_rules ON tbl_pegawai.id_rules=tbl_rules.id
-                                    WHERE BINARY tbl_pegawai.nik='$id'") or die (mysqli_error($conn));
-    $pimpinan = mysqli_query($conn, "SELECT tbl_pimpinan.nip, tbl_pimpinan.nama_pimpinan as nama, tbl_rules.id as id_rules, tbl_rules.nama_rules FROM tbl_pimpinan 
+                                    WHERE tbl_pegawai.id='$id'") or die (mysqli_error($conn));
+    $pimpinan = mysqli_query($conn, "SELECT tbl_pimpinan.nip, tbl_pimpinan.id as id_user, tbl_pimpinan.nama_pimpinan as nama, tbl_rules.id as id_rules, tbl_rules.nama_rules FROM tbl_pimpinan 
                                     JOIN tbl_rules ON tbl_pimpinan.id_rules=tbl_rules.id
-                                    WHERE BINARY tbl_pimpinan.nip='$id'") or die (mysqli_error($conn));
+                                    WHERE tbl_pimpinan.id='$id'") or die (mysqli_error($conn));
     $count_pegawai = mysqli_num_rows($pegawai);
     $count_pimpinan = mysqli_num_rows($pimpinan);
 

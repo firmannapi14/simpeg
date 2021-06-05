@@ -18,25 +18,22 @@
                                     <?php 
                                         if (isset($_POST['submit'])){
                                             $id                 = $_POST['id'];
-                                            $id_old             = $_POST['id_old'];
-                                            $id_new             = $id_old != $id ? $id : $id_old;
-                                            $id_auth            = $_POST['id_auth'];
+                                            $id_user            = $_POST['id_user'];
                                             $rules              = $_POST['rules'];
                                             $password           = encrypt_decrypt('encrypt', $_POST['password']);
                                             $nama               = $_POST['nama'];
                                             $jabatan            = $_POST['jabatan'];
                     
                                             $insert = mysqli_query($conn, "UPDATE tbl_pimpinan SET
-                                                                        nip                   = '$id_new',
+                                                                        nip                   = '$id',
                                                                         id_rules              = $rules,
                                                                         nama_pimpinan         = NULLIF('$nama', ''),
                                                                         jabatan_pimpinan      = NULLIF('$jabatan', '')
-                                                                        WHERE nip             = '$id_old'") or die (mysqli_error($conn));
+                                                                        WHERE id              = '$id_user'") or die (mysqli_error($conn));
 
                                             $insert2 = mysqli_query($conn, "UPDATE tbl_auth SET
-                                                                        nip                   = '$id_new',
                                                                         password_current_auth = NULLIF('$password', '')
-                                                                        WHERE id              = '$id_auth'") or die (mysqli_error($conn));
+                                                                        WHERE id_pimpinan     = '$id_user'") or die (mysqli_error($conn));
                                             
                                             if ($insert && $insert2) {
                                                 echo    '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Data berhasil disimpan.'.

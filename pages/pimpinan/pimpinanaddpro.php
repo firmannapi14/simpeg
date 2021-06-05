@@ -18,22 +18,27 @@
                                     <?php 
                                         if (isset($_POST['submit'])){
                                             $id                 = $_POST['id'];
+                                            $id_user            = $uuid4->toString();
                                             $id_auth            = $uuid4->toString();
                                             $rules              = $_POST['rules'];
                                             $password           = encrypt_decrypt('encrypt', $_POST['password']);
                                             $nama               = $_POST['nama'];
                                             $jabatan            = $_POST['jabatan'];
+                                            $datenow            = date('Y-m-d H:i:s');
                     
                                             $insert = mysqli_query($conn, "INSERT INTO tbl_pimpinan SET
+                                                                        id                        = '$id_user',
                                                                         nip                       = '$id',
                                                                         id_rules                  = $rules,
                                                                         nama_pimpinan             = NULLIF('$nama', ''),
-                                                                        jabatan_pimpinan          = NULLIF('$tempat_lahir', '')") or die (mysqli_error($conn));
+                                                                        jabatan_pimpinan          = NULLIF('$jabatan', ''),
+                                                                        created_at                = '$datenow',
+                                                                        updated_at                = '$datenow'") or die (mysqli_error($conn));
 
                                             $insert2 = mysqli_query($conn, "INSERT INTO tbl_auth SET
-                                                                        id                    = '$id_auth',
-                                                                        nip                   = '$id',
-                                                                        password_current_auth = NULLIF('$password', '')") or die (mysqli_error($conn));
+                                                                        id                        = '$id_auth',
+                                                                        id_pimpinan               = '$id_user',
+                                                                        password_current_auth     = NULLIF('$password', '')") or die (mysqli_error($conn));
                                             
                                             if ($insert && $insert2) {
                                                 echo    '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Data berhasil disimpan.'.

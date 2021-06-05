@@ -1,8 +1,8 @@
 <?php
     $g = mysqli_query($conn, "SELECT * FROM tbl_pegawai
                             JOIN tbl_rules ON tbl_pegawai.id_rules=tbl_rules.id
-                            JOIN tbl_auth ON tbl_pegawai.nik=tbl_auth.nik
-                            WHERE tbl_pegawai.nik='$_GET[id]'");
+                            JOIN tbl_auth ON tbl_pegawai.id=tbl_auth.id_pegawai
+                            WHERE tbl_pegawai.id='$_GET[id]'");
     $data = mysqli_fetch_array($g);
 ?>
 
@@ -29,8 +29,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <input class="form-control" type="text" placeholder="NIK ..." name="id" autocomplete="OFF" value="<?= $data['nik'] ?>" required>
-                                                    <input type="hidden" name="id_old" autocomplete="OFF" value="<?= $data['nik'] ?>" required>
-                                                    <input type="hidden" name="id_auth" value="<?= $data['id'] ?>">
+                                                    <input type="hidden" name="id_user" value="<?= $data['id_pegawai'] ?>" required>
                                                 </div>
                                             </div>
                                         </div>
