@@ -39,6 +39,21 @@
                     </a>
                 </div>
                 <?php } ?>
+                <div class="col-md-3">
+                    <a href="?page=logbook" style="text-decoration: none;">
+                        <div class="card text-white bg-gradient-success">
+                            <div class="card-body">
+                                <div class="text-muted text-right mb-4">
+                                    <svg class="c-icon c-icon-3xl">
+                                        <use xlink:href="./coreui/icons/sprites/free.svg#cil-book"></use>
+                                    </svg>
+                                </div>
+                                <div class="text-value-lg">&nbsp;</div>
+                                <small class="text-muted text-uppercase font-weight-bold">Logbook</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 <?php if (get_user_login('id_rules') !== '2') { ?>
                 <div class="col-md-3">
                     <a href="?page=pegawai" style="text-decoration: none;">

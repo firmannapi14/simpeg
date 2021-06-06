@@ -17,16 +17,16 @@
                                 <div class="col-md-12">
                                     <?php 
                                         if (isset($_POST['submit'])){
-                                            $nik                = get_user_login('nik');
+                                            $id_user            = get_user_login('id_user');
                                             $id                 = $uuid4->toString();
                                             $tahun              = $_POST['tahun'];
                                             $bulan              = $_POST['bulan'];
 
                                             $insert = mysqli_query($conn, "INSERT INTO tbl_logbook SET
-                                                                        id     = '$id',
-                                                                        nik    = '$nik',
-                                                                        tahun  = '$tahun',
-                                                                        bulan  = '$bulan'") or die (mysqli_error($conn));
+                                                                        id          = '$id',
+                                                                        id_pegawai  = '$id_user',
+                                                                        tahun       = '$tahun',
+                                                                        bulan       = '$bulan'") or die (mysqli_error($conn));
                                             
                                             if ($insert) {
                                                 echo    '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Data berhasil disimpan.'.

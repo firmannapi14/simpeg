@@ -94,6 +94,11 @@ switch(get_user_login('id_rules')) {
         //------------------------------------ PIMPINAN ------------------------------------
         elseif ($page == 'pimpinan')                include("pages/pimpinan/pimpinan.php");
 
+        //------------------------------------ LOGBOOK ------------------------------------
+        elseif ($page == 'logbook')                 include("pages/logbooklead/logbooklead.php");
+        elseif ($page == 'logbooklihat')            include("pages/logbooklead/logbookleadlihat.php");
+        elseif ($page == 'logbooklihatisi')         include("pages/logbooklead/logbookleadlihatisi.php");
+
         else include("pages/404.php");
     break;
     default:
@@ -113,6 +118,11 @@ switch(get_user_login('id_rules')) {
 
         //------------------------------------ PIMPINAN ------------------------------------
         elseif ($page == 'pimpinan')                include("pages/pimpinan/pimpinan.php");
+
+        //------------------------------------ LOGBOOK ------------------------------------
+        elseif ($page == 'logbook')                 include("pages/logbooklead/logbooklead.php");
+        elseif ($page == 'logbooklihat')            include("pages/logbooklead/logbookleadlihat.php");
+        elseif ($page == 'logbooklihatisi')         include("pages/logbooklead/logbookleadlihatisi.php");
 
         else include("pages/404.php"); 
     break;

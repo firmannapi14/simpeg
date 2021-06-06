@@ -1,13 +1,15 @@
 <?php
-    $g = mysqli_query($conn, "SELECT * FROM tbl_logbook
-                            WHERE id='$_GET[id]'");
+    $g = mysqli_query($conn, "SELECT * FROM tbl_pegawai 
+                            JOIN tbl_logbook ON tbl_pegawai.id=tbl_logbook.id_pegawai
+                            WHERE tbl_pegawai.id='$_GET[idx]' AND tbl_logbook.id='$_GET[id]'");
     $data = mysqli_fetch_array($g);
 ?>
 
 <div class="c-subheader px-3">
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="?page=beranda">Beranda</a></li>
-        <li class="breadcrumb-item active">Logbook <?= month_ind($data['bulan']) ?> <?= $data['tahun'] ?></li>
+        <li class="breadcrumb-item"><a href="?page=logbook">Logbook</a></li>
+        <li class="breadcrumb-item active">Data Logbook <?= $data['nik'] ?></li>
     </ol>
 </div>
 <main class="c-main">
@@ -16,11 +18,36 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
-                        <div class="card-header">Data Logbook <?= month_ind($data['bulan']) ?> <?= $data['tahun'] ?></div>
+                        <div class="card-header">Data Logbook <?= $data['nik'] ?>
+                        <a href="?page=logbooklihat&id=<?= $_GET['idx'] ?>" class="btn btn-primary btn-sm float-right"><i class="fa fa-chevron-left"></i> kembali</a>
+                        </div>
                         <div class="card-body">
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <a href="?page=logbookisiadd&id=<?= $_GET['id'] ?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Tambah Data Logbook</a>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-responsive-sm table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <td width="200px" style="font-weight: bold;">NIK</td>
+                                                <td><?= !empty($data['nik']) ? $data['nik'] : '-'  ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="200px" style="font-weight: bold;">Nama</td>
+                                                <td><?= !empty($data['nama_pegawai']) ? $data['nama_pegawai'] : '-' ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="200px" style="font-weight: bold;">Jenis Kelamin</td>
+                                                <td><?= empty($data['jenis_kelamin_pegawai']) ? '-' : $data['jenis_kelamin_pegawai'] === 'L' ? 'Laki-Laki' : 'Perempuan' ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="200px" style="font-weight: bold;">Jabatan</td>
+                                                <td><?= !empty($data['jabatan_pegawai']) ? $data['jabatan_pegawai'] : '-' ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="200px" style="font-weight: bold;">Logbook Bulan</td>
+                                                <td><?= !empty($data['bulan']) ? month_ind($data['bulan']) : '-' ?></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <div class="row">
@@ -34,7 +61,6 @@
                                                 <th>Uraian Kegiatan</th>
                                                 <th>Hasil Kegiatan</th>
                                                 <th>Dokumen</th>
-                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -51,10 +77,6 @@
                                                 <td><?= !empty($data['uraian_kegiatan']) ? $data['uraian_kegiatan'] : '-' ?></td>
                                                 <td><?= !empty($data['hasil_kegiatan']) ? $data['hasil_kegiatan'] : '-' ?></td>
                                                 <td><?= !empty($data['dokumen']) ? '<a href="file/'.$data['dokumen'].'" class="text-info" target="_blank">'.$data['dokumen'].'</a>' : '-' ?></td>
-                                                <td>
-                                                    <a href="?page=logbookisiedit&id=<?= $_GET['id'] ?>&idx=<?= $data['id'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> edit</a>
-                                                    <a href="?page=logbookisidelete&id=<?= $_GET['id'] ?>&idx=<?= $data['id'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> delete</a>
-                                                </td>
                                             </tr>
                                         <?php $no++; } ?>
                                         </tbody>

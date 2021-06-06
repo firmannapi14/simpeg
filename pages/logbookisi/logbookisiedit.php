@@ -1,6 +1,6 @@
 <?php
     $q = mysqli_query($conn, "SELECT * FROM tbl_logbook
-                            WHERE nik='$_GET[nik]' AND id='$_GET[id]'");
+                            WHERE id='$_GET[id]'");
     $dataq = mysqli_fetch_array($q);
     $g = mysqli_query($conn, "SELECT * FROM tbl_logbook_items
                             WHERE id='$_GET[idx]'");
@@ -10,7 +10,7 @@
 <div class="c-subheader px-3">
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="?page=beranda">Beranda</a></li>
-        <li class="breadcrumb-item active"><a href="?page=logbookisi&nik=<?= $_GET['nik'] ?>&id=<?= $_GET['id'] ?>">Logbook <?= month_ind($dataq['bulan']) ?> <?= $dataq['tahun'] ?></a></li>
+        <li class="breadcrumb-item active"><a href="?page=logbookisi&id=<?= $_GET['id'] ?>">Logbook <?= month_ind($dataq['bulan']) ?> <?= $dataq['tahun'] ?></a></li>
         <li class="breadcrumb-item active">Edit Data</li>
     </ol>
 </div>
@@ -21,7 +21,7 @@
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
                         <div class="card-header">Edit Data Logbook <?= month_ind($dataq['bulan']) ?> <?= $dataq['tahun'] ?></div>
-                        <form action="?page=logbookisieditpro&nik=<?= $_GET['nik'] ?>&id=<?= $_GET['id'] ?>" method="post" enctype="multipart/form-data">
+                        <form action="?page=logbookisieditpro&id=<?= $_GET['id'] ?>&idx=<?= $_GET['idx'] ?>" method="post" enctype="multipart/form-data">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-8">
@@ -69,14 +69,14 @@
                                             <label for="name">Dokumen (opsional)</label>
                                             <input class="form-control" type="file" name="file" accept=".doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.pdf,.zip,.rar" />
                                             <input type="hidden" name="old_file" value="<?= $data['dokumen'] ?>" />
-                                            <a href="file/<?= $data['dokumen'] ?>" target="_blank" class="text-info"><?= $data['dokumen'] ?></a>
+                                            <a href="file/<?= $data['dokumen'] ?>" target="_blank" class="text-info"><?= $data['dokumen'] ?> <span class="fa fa-check-circle text-success"></span></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-footer">
                                 <input type="submit" name="submit" class="btn btn-primary" value="Simpan">
-                                <a href="?page=logbookisi&nik=<?= $_GET['nik'] ?>&id=<?= $_GET['id'] ?>" class="btn btn-secondary">Kembali</a>
+                                <a href="?page=logbookisi&id=<?= $_GET['id'] ?>" class="btn btn-secondary">Kembali</a>
                             </div>
                         </form>
                     </div>
@@ -85,4 +85,3 @@
         </div>
     </div>
 </main>
-<script>

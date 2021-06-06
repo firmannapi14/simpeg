@@ -1,13 +1,13 @@
 <?php
     $g = mysqli_query($conn, "SELECT * FROM tbl_logbook
-                            WHERE nik='$_GET[nik]' AND id='$_GET[id]'");
+                            WHERE id='$_GET[id]'");
     $data = mysqli_fetch_array($g);
 ?>
 
 <div class="c-subheader px-3">
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="?page=beranda">Beranda</a></li>
-        <li class="breadcrumb-item active"><a href="?page=logbook&nik=<?= $_GET['nik'] ?>&id=<?= $_GET['id'] ?>">Logbook</a></li>
+        <li class="breadcrumb-item active"><a href="?page=logbook&id=<?= $_GET['id'] ?>">Logbook</a></li>
         <li class="breadcrumb-item active">Tambah Data</li>
     </ol>
 </div>
@@ -56,7 +56,7 @@
                                                             '<button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'.
                                                         '</div>';
                                                 echo "<meta http-equiv='refresh' content='2;
-                                                url=?page=logbookisi&nik=$_GET[nik]&id=$_GET[id]'";
+                                                url=?page=logbookisi&id=$_GET[id]'";
                                             }
                                         }
                                     ?>

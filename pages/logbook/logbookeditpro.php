@@ -1,8 +1,8 @@
 <div class="c-subheader px-3">
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="?page=beranda">Beranda</a></li>
-        <li class="breadcrumb-item active"><a href="?page=customer">Logbook</a></li>
-        <li class="breadcrumb-item active">Edit Data Logbook</li>
+        <li class="breadcrumb-item active"><a href="?page=logbook">Logbook</a></li>
+        <li class="breadcrumb-item active">Edit Data</li>
     </ol>
 </div>
 <main class="c-main">
@@ -17,26 +17,21 @@
                                 <div class="col-md-12">
                                     <?php 
                                         if (isset($_POST['submit'])){
-                                            $id         = $_POST['id'];
-                                            $cust_name  = $_POST['customer_name'];
-                                            $cust_phone = $_POST['customer_phone'];
-                                            $cust_addr  = $_POST['customer_address'];
+                                            $id                 = $_POST['id'];
+                                            $tahun              = $_POST['tahun'];
+                                            $bulan              = $_POST['bulan'];
 
-                                            $updated_at = date('Y-m-d H:i:s');
-                    
-                                            $insert = mysqli_query($conn, "UPDATE customers SET
-                                                    customer_name       = '$cust_name',
-                                                    customer_phone      = NULLIF('$cust_phone', ''),
-                                                    customer_address    = NULLIF('$cust_addr', ''),
-                                                    updated_at          = '$updated_at'
-                                                    WHERE id            = '$id'") or die (mysqli_error($conn));
+                                            $insert = mysqli_query($conn, "UPDATE tbl_logbook SET
+                                                                        tahun       = '$tahun',
+                                                                        bulan       = '$bulan'
+                                                                        WHERE id    = '$id'") or die (mysqli_error($conn));
                                             
-                                            if ($insert){
-                                                echo    '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Data has been saved.'.
+                                            if ($insert) {
+                                                echo    '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Success!</strong> Data berhasil disimpan.'.
                                                             '<button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>'.
                                                         '</div>';
                                                 echo "<meta http-equiv='refresh' content='2;
-                                                url=?page=customer'>";
+                                                url=?page=logbook'>";
                                             }
                                         }
                                     ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 05, 2021 at 12:35 PM
+-- Generation Time: Jun 06, 2021 at 12:23 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -87,8 +87,8 @@ INSERT INTO `tbl_auth` (`id`, `id_pegawai`, `id_pimpinan`, `password_current_aut
 
 CREATE TABLE `tbl_logbook` (
   `id` varchar(36) NOT NULL,
-  `nik` varchar(17) DEFAULT NULL,
-  `nip` varchar(20) DEFAULT NULL,
+  `id_pegawai` varchar(36) DEFAULT NULL,
+  `id_pimpinan` varchar(36) DEFAULT NULL,
   `tahun` varchar(4) DEFAULT NULL,
   `bulan` varchar(2) DEFAULT NULL,
   `tgl_selesai_pengisian` timestamp NULL DEFAULT NULL,
@@ -104,10 +104,13 @@ CREATE TABLE `tbl_logbook` (
 -- Dumping data for table `tbl_logbook`
 --
 
-INSERT INTO `tbl_logbook` (`id`, `nik`, `nip`, `tahun`, `bulan`, `tgl_selesai_pengisian`, `tgl_permohonan`, `tgl_disetujui`, `status`, `riwayat_persetujuan`, `created_at`, `updated_at`) VALUES
-('2d6018b6-5ebb-4ebd-865e-5d663696eb7b', '9106021505700001', NULL, '2021', '07', NULL, NULL, NULL, NULL, NULL, '2021-06-04 11:11:41', '2021-06-04 11:11:41'),
-('9592438d-5123-44d9-82b1-8782fecf0813', '9106122806830003', NULL, '2021', '06', NULL, NULL, NULL, NULL, NULL, '2021-06-03 17:48:25', '2021-06-03 17:48:25'),
-('969b75c6-9f7d-4191-aa54-530a903c08bd', '9106122806830003', NULL, '2021', '07', NULL, NULL, NULL, NULL, NULL, '2021-06-03 18:31:11', '2021-06-03 18:31:11');
+INSERT INTO `tbl_logbook` (`id`, `id_pegawai`, `id_pimpinan`, `tahun`, `bulan`, `tgl_selesai_pengisian`, `tgl_permohonan`, `tgl_disetujui`, `status`, `riwayat_persetujuan`, `created_at`, `updated_at`) VALUES
+('200bd916-6286-4a13-b7ec-19d36f04a94a', '5ed71446-8f5c-493c-956a-983f4ff32a8b', NULL, '2021', '05', NULL, NULL, NULL, NULL, NULL, '2021-06-05 17:43:02', '2021-06-05 17:43:02'),
+('4d535243-0595-4b8f-8fd5-9e93912fe51f', '067117ca-3c16-423e-bd4a-26229dd7a686', NULL, '2021', '07', NULL, NULL, NULL, NULL, NULL, '2021-06-05 14:56:11', '2021-06-05 14:56:11'),
+('6871369d-9401-48ad-a198-3533d7affcc4', '7febf2ad-07c1-4ed0-b93d-cbd9f9dcb4fd', NULL, '2021', '01', NULL, NULL, NULL, NULL, NULL, '2021-06-05 22:16:16', '2021-06-05 22:16:16'),
+('6caa12cb-4bef-48d0-9967-117423f1ed92', '5ed71446-8f5c-493c-956a-983f4ff32a8b', NULL, '2021', '07', NULL, NULL, NULL, NULL, NULL, '2021-06-05 17:42:49', '2021-06-05 17:42:49'),
+('b458959d-3bfa-413d-93e6-b16eacad31ab', '5ed71446-8f5c-493c-956a-983f4ff32a8b', NULL, '2021', '06', NULL, NULL, NULL, NULL, NULL, '2021-06-05 17:43:16', '2021-06-05 17:43:16'),
+('db733929-7340-47a7-926b-029d377661ab', '067117ca-3c16-423e-bd4a-26229dd7a686', NULL, '2021', '06', NULL, NULL, NULL, NULL, NULL, '2021-06-05 14:57:23', '2021-06-05 14:57:23');
 
 -- --------------------------------------------------------
 
@@ -127,6 +130,14 @@ CREATE TABLE `tbl_logbook_items` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_logbook_items`
+--
+
+INSERT INTO `tbl_logbook_items` (`id`, `id_logbook`, `tanggal`, `mulai`, `selesai`, `uraian_kegiatan`, `hasil_kegiatan`, `dokumen`, `created_at`, `updated_at`) VALUES
+('0046655e-57d6-40d8-ae44-e67963a82c41', 'db733929-7340-47a7-926b-029d377661ab', '2021-06-05', '09:00:00', '10:00:00', 'Mencoba aja', 'mencoba dengan ikhtiar', '0046655e-57d6-40d8-ae44-e67963a82c41.png', '2021-06-05 15:14:34', '2021-06-05 15:14:34'),
+('2d3e53b1-0cfe-41f6-9f41-226e9b17f2e5', 'db733929-7340-47a7-926b-029d377661ab', '2021-06-06', '07:00:00', '10:30:00', 'kegiatan tgl 6 juni 2021', 'kegiatan tgl 6 juni 2021', '2d3e53b1-0cfe-41f6-9f41-226e9b17f2e5.jpeg', '2021-06-05 15:19:23', '2021-06-05 15:19:23');
 
 -- --------------------------------------------------------
 
@@ -255,8 +266,8 @@ ALTER TABLE `tbl_auth`
 --
 ALTER TABLE `tbl_logbook`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `nik` (`nik`),
-  ADD KEY `nip` (`nip`);
+  ADD KEY `id_pegawai` (`id_pegawai`),
+  ADD KEY `id_pimpinan` (`id_pimpinan`);
 
 --
 -- Indexes for table `tbl_logbook_items`
@@ -306,8 +317,8 @@ ALTER TABLE `tbl_auth`
 -- Constraints for table `tbl_logbook`
 --
 ALTER TABLE `tbl_logbook`
-  ADD CONSTRAINT `tbl_logbook_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `tbl_pegawai` (`nik`),
-  ADD CONSTRAINT `tbl_logbook_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `tbl_pimpinan` (`nip`);
+  ADD CONSTRAINT `tbl_logbook_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `tbl_pegawai` (`id`),
+  ADD CONSTRAINT `tbl_logbook_ibfk_2` FOREIGN KEY (`id_pimpinan`) REFERENCES `tbl_pimpinan` (`id`);
 
 --
 -- Constraints for table `tbl_logbook_items`
