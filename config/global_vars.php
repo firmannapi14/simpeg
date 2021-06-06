@@ -9,7 +9,7 @@ $dompdf = new Dompdf();
 function get_absensi($id) {
     include "connection.php";
     $date_now = date('Y-m-d');
-    $absensi = mysqli_query($conn, "SELECT * FROM tbl_absensi WHERE created_at LIKE '%$date_now%' AND nik='$id'");
+    $absensi = mysqli_query($conn, "SELECT * FROM tbl_absensi WHERE created_at LIKE '%$date_now%' AND id_pegawai='$id'");
     $count = mysqli_num_rows($absensi);
     if ($count > 0) {
         return mysqli_fetch_array($absensi);

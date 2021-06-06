@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 06, 2021 at 12:23 PM
+-- Generation Time: Jun 06, 2021 at 01:02 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tbl_absensi` (
   `id` varchar(36) NOT NULL,
-  `nik` varchar(17) NOT NULL,
+  `id_pegawai` varchar(36) NOT NULL,
   `jenis_presensi` enum('WFH','WFO') DEFAULT NULL,
   `jam_masuk` timestamp NULL DEFAULT NULL,
   `jam_pulang` timestamp NULL DEFAULT NULL,
@@ -251,7 +251,7 @@ INSERT INTO `tbl_rules` (`id`, `nama_rules`, `deskripsi_rules`, `created_at`, `u
 --
 ALTER TABLE `tbl_absensi`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `nik` (`nik`);
+  ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
 -- Indexes for table `tbl_auth`
@@ -304,7 +304,7 @@ ALTER TABLE `tbl_rules`
 -- Constraints for table `tbl_absensi`
 --
 ALTER TABLE `tbl_absensi`
-  ADD CONSTRAINT `tbl_absensi_ibfk_1` FOREIGN KEY (`nik`) REFERENCES `tbl_pegawai` (`nik`);
+  ADD CONSTRAINT `tbl_absensi_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `tbl_pegawai` (`id`);
 
 --
 -- Constraints for table `tbl_auth`
