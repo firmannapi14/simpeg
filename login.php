@@ -85,9 +85,9 @@
               <div class="card-body text-center">
                 <div>
                   <h2>
-                    <svg class="c-icon" style="transform:scale(2);margin-right:10px;"><use xlink:href="./coreui/icons/sprites/free.svg#cil-user"></use></svg> SIMPEG PPNPN
+                    <svg class="c-icon" style="transform:scale(2);margin-right:10px;"><use xlink:href="./coreui/icons/sprites/free.svg#cil-user"></use></svg> SIMPEG PPNPN BALAI LAPAN BIAK
                   </h2>
-                  <p>BALAI LAPAN BIAK</p>
+                  <p></p>
                   <!-- <p><?= $uuid4->toString() ?></p> -->
                   <!-- <p><?= encrypt_decrypt('encrypt', 'susanto'); ?></p> -->
                 </div>
