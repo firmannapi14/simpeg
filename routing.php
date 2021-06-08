@@ -24,6 +24,14 @@ switch(get_user_login('id_rules')) {
         elseif ($page == 'logbookeditpro')          include("pages/logbook/logbookeditpro.php");
         elseif ($page == 'logbookdelete')           include("pages/logbook/logbookdelete.php");
 
+        //------------------------------------ LOGBOOK ISI ------------------------------------
+        elseif ($page == 'logbookisi')              include("pages/logbookisi/logbookisi.php");
+        elseif ($page == 'logbookisiadd')           include("pages/logbookisi/logbookisiadd.php");
+        elseif ($page == 'logbookisiaddpro')        include("pages/logbookisi/logbookisiaddpro.php");
+        elseif ($page == 'logbookisiedit')          include("pages/logbookisi/logbookisiedit.php");
+        elseif ($page == 'logbookisieditpro')       include("pages/logbookisi/logbookisieditpro.php");
+        elseif ($page == 'logbookisidelete')        include("pages/logbookisi/logbookisidelete.php");
+
         //------------------------------------ PEGAWAI ------------------------------------
         elseif ($page == 'pegawai')                 include("pages/pegawai/pegawai.php");
         elseif ($page == 'pegawaiadd')              include("pages/pegawai/pegawaiadd.php");
