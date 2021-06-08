@@ -36,7 +36,7 @@
                                             </tr>
                                             <tr>
                                                 <td width="200px" style="font-weight: bold;">Jenis Kelamin</td>
-                                                <td><?= empty($data['jenis_kelamin_pegawai']) ? '-' : $data['jenis_kelamin_pegawai'] === 'L' ? 'Laki-Laki' : 'Perempuan' ?></td>
+                                                <td><?= $data['jenis_kelamin_pegawai'] == 'L' ? 'Laki-Laki' : 'Perempuan' ?></td>
                                             </tr>
                                             <tr>
                                                 <td width="200px" style="font-weight: bold;">Jabatan</td>
