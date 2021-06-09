@@ -10,6 +10,7 @@ switch(get_user_login('id_rules')) {
 
         //------------------------------------ ABSENSI ------------------------------------
         elseif ($page == 'absensi')                 include("pages/absensi/absensi.php");
+        elseif ($page == 'rekapabsensi')            include("pages/absensi/absensilist.php");
 
         //------------------------------------ PROFIL ------------------------------------
         elseif ($page == 'profile')                 include("pages/profile/profile.php");
@@ -31,6 +32,7 @@ switch(get_user_login('id_rules')) {
         elseif ($page == 'logbookisiedit')          include("pages/logbookisi/logbookisiedit.php");
         elseif ($page == 'logbookisieditpro')       include("pages/logbookisi/logbookisieditpro.php");
         elseif ($page == 'logbookisidelete')        include("pages/logbookisi/logbookisidelete.php");
+        elseif ($page == 'logbookisifinish')        include("pages/logbookisi/logbookisifinish.php");
 
         //------------------------------------ PEGAWAI ------------------------------------
         elseif ($page == 'pegawai')                 include("pages/pegawai/pegawai.php");
@@ -59,6 +61,7 @@ switch(get_user_login('id_rules')) {
 
         //------------------------------------ ABSENSI ------------------------------------
         elseif ($page == 'absensi')                 include("pages/absensi/absensi.php");
+        elseif ($page == 'rekapabsensi')            include("pages/absensi/absensilist.php");
 
         //------------------------------------ PROFIL ------------------------------------
         elseif ($page == 'profile')                 include("pages/profile/profile.php");
@@ -80,6 +83,7 @@ switch(get_user_login('id_rules')) {
         elseif ($page == 'logbookisiedit')          include("pages/logbookisi/logbookisiedit.php");
         elseif ($page == 'logbookisieditpro')       include("pages/logbookisi/logbookisieditpro.php");
         elseif ($page == 'logbookisidelete')        include("pages/logbookisi/logbookisidelete.php");
+        elseif ($page == 'logbookisifinish')        include("pages/logbookisi/logbookisifinish.php");
 
 
         else include("pages/404.php");
@@ -106,6 +110,7 @@ switch(get_user_login('id_rules')) {
         elseif ($page == 'logbook')                 include("pages/logbooklead/logbooklead.php");
         elseif ($page == 'logbooklihat')            include("pages/logbooklead/logbookleadlihat.php");
         elseif ($page == 'logbooklihatisi')         include("pages/logbooklead/logbookleadlihatisi.php");
+        elseif ($page == 'logbookaccisi')           include("pages/logbooklead/logbookleadaccisi.php");
 
         else include("pages/404.php");
     break;

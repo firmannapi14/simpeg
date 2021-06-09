@@ -13,16 +13,30 @@
 <main class="c-main">
     <div class="container-fluid">
         <div class="fade-in">
+            <?php if (!empty($data['tgl_selesai_pengisian'])) { ?>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert"><strong>Info!</strong> Isi logbook sudah tidak dapat diubah karena proses pengisian telah selesai <i class="fa fa-check-circle"></i>
+                            <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        </div>
+                    </div> 
+                </div>
+            <?php } ?>
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
                         <div class="card-header">Data Logbook <?= month_ind($data['bulan']) ?> <?= $data['tahun'] ?>
-                            <a href="?page=logbook" class="btn btn-primary btn-sm float-right"><i class="fa fa-chevron-left"></i> kembali</a>
+                            <a href="?page=logbook" class="btn btn-primary btn-sm float-right ml-1"><i class="fa fa-chevron-left"></i> kembali</a>
+                            <?php if (empty($data['tgl_selesai_pengisian'])) { ?>
+                                <a href="?page=logbookisifinish&id=<?= $_GET['id'] ?>" class="btn btn-success btn-sm float-right"><i class="fa fa-check-circle"></i> selesaikan pengisian</a>
+                            <?php } ?>
                         </div>
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-md-3">
-                                    <a href="?page=logbookisiadd&id=<?= $_GET['id'] ?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Tambah Data Logbook</a>
+                                    <?php if (empty($data['tgl_selesai_pengisian'])) { ?>
+                                        <a href="?page=logbookisiadd&id=<?= $_GET['id'] ?>" class="btn btn-primary"><span class="fa fa-plus-circle"></span> Tambah Data Logbook</a>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div class="row">
@@ -36,7 +50,9 @@
                                                 <th>Uraian Kegiatan</th>
                                                 <th>Hasil Kegiatan</th>
                                                 <th>Dokumen</th>
-                                                <th>Aksi</th>
+                                                <?php if (empty($data['tgl_selesai_pengisian'])) { ?>
+                                                    <th>Aksi</th>
+                                                <?php } ?>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -45,18 +61,20 @@
                                         $q = mysqli_query($conn, "SELECT * FROM tbl_logbook_items
                                                                 WHERE id_logbook='$_GET[id]'
                                                                 ORDER BY tanggal ASC, mulai ASC");
-                                        while($data=mysqli_fetch_array($q)){ ?>
+                                        while($datas=mysqli_fetch_array($q)){ ?>
                                             <tr>
                                                 <td><?= $no ?></td>
-                                                <td><?= !empty($data['tanggal']) ? date_ind($data['tanggal']) : '-' ?></td>
-                                                <td><?= !empty($data['mulai']) || !empty($data['selesai']) ? date('H:i', strtotime($data['mulai'])).' - '.date('H:i', strtotime($data['selesai'])) : '-' ?></td>
-                                                <td><?= !empty($data['uraian_kegiatan']) ? $data['uraian_kegiatan'] : '-' ?></td>
-                                                <td><?= !empty($data['hasil_kegiatan']) ? $data['hasil_kegiatan'] : '-' ?></td>
-                                                <td><?= !empty($data['dokumen']) ? '<a href="file/'.$data['dokumen'].'" class="text-info" target="_blank">'.$data['dokumen'].'</a>' : '-' ?></td>
-                                                <td>
-                                                    <a href="?page=logbookisiedit&id=<?= $_GET['id'] ?>&idx=<?= $data['id'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> edit</a>
-                                                    <a href="?page=logbookisidelete&id=<?= $_GET['id'] ?>&idx=<?= $data['id'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> delete</a>
-                                                </td>
+                                                <td><?= !empty($datas['tanggal']) ? date_ind($datas['tanggal']) : '-' ?></td>
+                                                <td><?= !empty($datas['mulai']) || !empty($datas['selesai']) ? date('H:i', strtotime($datas['mulai'])).' - '.date('H:i', strtotime($datas['selesai'])) : '-' ?></td>
+                                                <td><?= !empty($datas['uraian_kegiatan']) ? $datas['uraian_kegiatan'] : '-' ?></td>
+                                                <td><?= !empty($datas['hasil_kegiatan']) ? $datas['hasil_kegiatan'] : '-' ?></td>
+                                                <td><?= !empty($datas['dokumen']) ? '<a href="file/'.$datas['dokumen'].'" class="text-info" target="_blank">'.$datas['dokumen'].'</a>' : '-' ?></td>
+                                                <?php if (empty($data['tgl_selesai_pengisian'])) { ?>
+                                                    <td>
+                                                        <a href="?page=logbookisiedit&id=<?= $_GET['id'] ?>&idx=<?= $datas['id'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> edit</a>
+                                                        <a href="?page=logbookisidelete&id=<?= $_GET['id'] ?>&idx=<?= $datas['id'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> delete</a>
+                                                    </td>
+                                                <?php } ?> 
                                             </tr>
                                         <?php $no++; } ?>
                                         </tbody>

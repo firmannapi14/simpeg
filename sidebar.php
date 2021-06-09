@@ -15,10 +15,12 @@
           </svg> Profile</a>
       </li>
       <?php if (get_user_login('id_rules') === '2' || get_user_login('id_rules') === '1') { ?>
-      <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="?page=absensi">
-          <svg class="c-sidebar-nav-icon">
-            <use xlink:href="./coreui/icons/sprites/free.svg#cil-calendar-check"></use>
-          </svg> Absensi</a>
+      <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
+      <svg class="c-sidebar-nav-icon"><use xlink:href="./coreui/icons/sprites/free.svg#cil-calendar-check"></use></svg> Absensi</a>
+        <ul class="c-sidebar-nav-dropdown-items">
+          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="?page=absensi"><span class="c-sidebar-nav-icon"></span> Isi Absensi</a></li>
+          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="?page=rekapabsensi"><span class="c-sidebar-nav-icon"></span> Rekap Absensi</a></li>
+        </ul>
       </li>
       <?php } ?>
       <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="?page=logbook">

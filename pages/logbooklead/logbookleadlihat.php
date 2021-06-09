@@ -1,5 +1,6 @@
 <?php
-    $g = mysqli_query($conn, "SELECT * FROM tbl_pegawai WHERE id='$_GET[id]'");
+    $g = mysqli_query($conn, "SELECT * FROM tbl_pegawai 
+                            WHERE id='$_GET[id]'");
     $data = mysqli_fetch_array($g);
 ?>
 
@@ -17,7 +18,7 @@
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
                         <div class="card-header">Data Logbook <?= $data['nik'] ?>
-                        <a href="?page=logbook" class="btn btn-primary btn-sm float-right"><i class="fa fa-chevron-left"></i> kembali</a>
+                            <a href="?page=logbook" class="btn btn-primary btn-sm float-right"><i class="fa fa-chevron-left"></i> kembali</a>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -46,7 +47,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="example table table-responsive-xs table-bordered table-striped table-sm">
+                                    <table class="example table table-responsive-sm table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th rowspan="2">No</th>
@@ -54,6 +55,7 @@
                                                 <th rowspan="2">Bulan</th>
                                                 <th colspan="3">Tanggal</th>
                                                 <th rowspan="2">Status</th>
+                                                <th rowspan="2">Komentar</th>
                                                 <th rowspan="2">Aksi</th>
                                             </tr>
                                             <tr>
@@ -77,9 +79,13 @@
                                                 <td><?= !empty($data['tgl_selesai_pengisian']) ? date('d F Y H:i:s', strtotime($data['tgl_selesai_pengisian'])) : '-' ?></td>
                                                 <td><?= !empty($data['tgl_permohonan']) ? date('d F Y H:i:s', strtotime($data['tgl_permohonan'])) : '-' ?></td>
                                                 <td><?= !empty($data['tgl_disetujui']) ? date('d F Y H:i:s', strtotime($data['tgl_disetujui'])) : '-' ?></td>
-                                                <td><?= !empty($data['status']) ? $data['status'] : '-' ?></td>
+                                                <td><?= !empty($data['status']) ? label_status($data['status']) : '-' ?></td>
+                                                <td><?= !empty($data['komentar']) ? $data['komentar'] : '-' ?></td>
                                                 <td>
                                                     <a href="?page=logbooklihatisi&id=<?= $data['id'] ?>&idx=<?= $data['id_pegawai'] ?>" class="btn btn-success btn-sm"><i class="fa fa-folder-open"></i> buka</a>
+                                                    <?php if (!empty($data['tgl_selesai_pengisian']) && empty($data['komentar']) && get_user_login('id_rules') == '4') { ?>
+                                                    <button class="btn btn-info btn-sm btn-check" type="button" data-id="<?= $data['id'] ?>" data-toggle="modal" data-target="#myModal"><i class="fa fa-comment"></i> komentar</button>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php $no++; } ?>
@@ -93,4 +99,67 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Isi Komentar</h4>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="hidden" name="id" value="">
+                                <textarea class="form-control isi" name="hasil_kegiatan" rows="3" placeholder="Tuliskan Komentar ..." style="resize: none;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary submit-btn" type="button">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
+<script type="text/javascript">
+$(function() {
+    $('.isi').val('');
+});
+$(document).ready(function(){
+
+    $('.btn-check').on('click',function(){
+        var id = $(this).data('id');
+        $('input[name="id"]').val(id);
+    });
+
+    $('.submit-btn').on('click',function(){
+        var idx = $('input[name="id"]').val(),
+            comment = $('.isi').val();
+            
+            if (!comment) {
+                alert('Isi komentar terlebih dahulu');
+            } else {
+                $.ajax({
+                    url: 'config/post_comment.php',
+                    tyle: 'post',
+                    data: { 'id': idx, 'comment': comment },
+                    success: function(res) {
+                        data = jQuery.parseJSON(res);
+                        if (data.statusCode === 200) {
+                            $('#myModal').modal('hide');
+                            location.reload(true);
+                        } else {
+                            console.log('something wrong !!')
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err)
+                    }
+                })
+            }
+    });
+
+});
+</script>

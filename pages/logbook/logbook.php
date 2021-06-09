@@ -47,14 +47,16 @@
                                                 <td><?= $no ?></td>
                                                 <td><?= !empty($data['tahun']) ? $data['tahun'] : '-' ?></td>
                                                 <td><?= !empty($data['bulan']) ? month_ind($data['bulan']) : '-' ?></td>
-                                                <td><?= !empty($data['tgl_selesai_pengisian']) ? date('d F Y H:i:s', strtotime($data['tgl_selesai_pengisian'])) : '-' ?></td>
+                                                <td><?= !empty($data['tgl_selesai_pengisian']) ? date('d M Y H:i:s', strtotime($data['tgl_selesai_pengisian'])) : '-' ?></td>
                                                 <td><?= !empty($data['tgl_permohonan']) ? date('d F Y H:i:s', strtotime($data['tgl_permohonan'])) : '-' ?></td>
                                                 <td><?= !empty($data['tgl_disetujui']) ? date('d F Y H:i:s', strtotime($data['tgl_disetujui'])) : '-' ?></td>
-                                                <td><?= !empty($data['status']) ? $data['status'] : '-' ?></td>
+                                                <td><?= !empty($data['status']) ? label_status($data['status']) : '-' ?></td>
                                                 <td>
                                                     <a href="?page=logbookisi&id=<?= $data['id'] ?>" class="btn btn-success btn-sm"><i class="fa fa-gear"></i> kelola</a>
-                                                    <a href="?page=logbookedit&id=<?= $data['id'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> edit</a>
-                                                    <a href="?page=logbookdelete&id=<?= $data['id'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> delete</a>
+                                                    <?php if (empty($data['tgl_selesai_pengisian'])) { ?>
+                                                        <a href="?page=logbookedit&id=<?= $data['id'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> edit</a>
+                                                        <a href="?page=logbookdelete&id=<?= $data['id'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> delete</a>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php $no++; } ?>

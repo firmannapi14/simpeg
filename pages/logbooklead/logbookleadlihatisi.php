@@ -1,6 +1,6 @@
 <?php
-    $g = mysqli_query($conn, "SELECT * FROM tbl_pegawai 
-                            JOIN tbl_logbook ON tbl_pegawai.id=tbl_logbook.id_pegawai
+    $g = mysqli_query($conn, "SELECT * FROM tbl_logbook
+                            JOIN tbl_pegawai ON tbl_logbook.id_pegawai=tbl_pegawai.id
                             WHERE tbl_pegawai.id='$_GET[idx]' AND tbl_logbook.id='$_GET[id]'");
     $data = mysqli_fetch_array($g);
 ?>
@@ -19,7 +19,10 @@
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
                         <div class="card-header">Data Logbook <?= $data['nik'] ?>
-                        <a href="?page=logbooklihat&id=<?= $_GET['idx'] ?>" class="btn btn-primary btn-sm float-right"><i class="fa fa-chevron-left"></i> kembali</a>
+                            <a href="?page=logbooklihat&id=<?= $_GET['idx'] ?>" class="btn btn-primary btn-sm float-right ml-1"><i class="fa fa-chevron-left"></i> kembali</a>
+                            <?php if (get_user_login('id_rules') == '3' && empty($data['tgl_disetujui'])) { ?>
+                                <a href="?page=logbookaccisi&id=<?= $_GET['id'] ?>&idx=<?= $_GET['idx'] ?>" class="btn btn-success btn-sm float-right"><i class="fa fa-check-circle"></i> acc logbook</a>
+                            <?php } ?>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -45,6 +48,41 @@
                                             <tr>
                                                 <td width="200px" style="font-weight: bold;">Logbook Bulan</td>
                                                 <td><?= !empty($data['bulan']) ? month_ind($data['bulan']) : '-' ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="200px" style="font-weight: bold;">Riwayat Persetujuan</td>
+                                                <td>
+                                                    <?php if (!empty($data['tgl_selesai_pengisian'])) { ?>
+                                                    <table class="table table-responsive-sm table-sm">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Tanggal</th>
+                                                                <th>Persetujuan</th>
+                                                                <th>Komentar</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php if (!empty($data['tgl_selesai_pengisian'])) { ?>
+                                                            <tr>
+                                                                <td>Dian Yudistira, S.Kom., M.Kom.</td>
+                                                                <td><?= date('d F Y H:i:s', strtotime($data['tgl_selesai_pengisian'])) ?></td>
+                                                                <td><?= !empty($data['komentar']) ? $data['komentar'] : '-' ?></td>
+                                                                <td><span class="badge badge-info">Permohonan Persetujuan</span></td>
+                                                            </tr>
+                                                            <?php } ?>
+                                                            <?php if (!empty($data['tgl_disetujui'])) { ?>
+                                                            <tr>
+                                                                <td><?= get_data_pimpinan($data['id_pimpinan'])['nama_pimpinan'] ?></td>
+                                                                <td><?= date('d F Y H:i:s', strtotime($data['tgl_disetujui'])) ?></td>
+                                                                <td>-</td>
+                                                                <td><?= label_status($data['status']) ?></td>
+                                                            </tr>
+                                                            <?php } ?>
+                                                        </tbody>
+                                                    </table>
+                                                    <?php } else { echo '-'; } ?>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
