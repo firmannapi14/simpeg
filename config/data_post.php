@@ -2,43 +2,38 @@
 
 include "connection.php";
 
-$data = explode('_',$_REQUEST['id']);
-$month = $data[0];
-$year = $data[1];
-$arr = array (1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni','Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
+$id         = $_REQUEST['id'];
+$id_user    = $_REQUEST['id_user'];
+$id_absensi = $_REQUEST['id_absensi'];
+$presensi   = $_REQUEST['presensi'];
+$dateNow    = $_REQUEST['dateNow'];
+$onlyDate   = $_REQUEST['onlyDate'];
+$data;
 
-
-$get1 = mysqli_query($conn, "SELECT product_id, invoice_total FROM invoices WHERE MONTH(invoice_date)='$month' AND YEAR(invoice_date)='$year' AND product_id='PRODUCT001'");
-$jum1 = 0;
-while($data1 = mysqli_fetch_array($get1)) {
-   $jum1 = $jum1 + $data1['invoice_total'];
+if ($id == '0') {
+   mysqli_query($conn, "INSERT INTO tbl_absensi SET
+                        id                    = '$id_absensi',
+                        id_pegawai            = '$id_user',
+                        jenis_presensi        = '$presensi',
+                        jam_masuk             = '$dateNow'") or die (mysqli_error($conn));
+   $data = [
+      "id"           => $id,
+      "presensi"     => $presensi,
+      "dateNow"      => date('H:i', strtotime($dateNow)),
+   ];
+} else {
+   mysqli_query($conn, "UPDATE tbl_absensi SET
+                        jam_pulang            = '$dateNow'
+                        WHERE created_at LIKE '%$onlyDate%' AND id_pegawai = '$id'") or die (mysqli_error($conn));
+   $data = [
+      "id"           => $id,
+      "presensi"     => $presensi,
+      "dateNow"      => date('H:i', strtotime($dateNow)),
+   ];
 }
 
-$get2 = mysqli_query($conn, "SELECT product_id, invoice_total FROM invoices WHERE MONTH(invoice_date)='$month' AND YEAR(invoice_date)='$year' AND product_id='PRODUCT002'");
-$jum2 = 0;
-while($data2 = mysqli_fetch_array($get2)) {
-   $jum2 = $jum2 + $data2['invoice_total'];
-}
 
-$get3 = mysqli_query($conn, "SELECT product_id, invoice_total FROM invoices WHERE MONTH(invoice_date)='$month' AND YEAR(invoice_date)='$year' AND product_id='PRODUCT003'");
-$jum3 = 0;
-while($data3 = mysqli_fetch_array($get3)) {
-   $jum3 = $jum3 + $data3['invoice_total'];
-}
 
-$get4 = mysqli_query($conn, "SELECT product_id, invoice_total FROM invoices WHERE MONTH(invoice_date)='$month' AND YEAR(invoice_date)='$year' AND product_id='PRODUCT004'");
-$jum4 = 0;
-while($data4 = mysqli_fetch_array($get4)) {
-   $jum4 = $jum4 + $data4['invoice_total'];
-}
-
-$db_data = [
-   [
-      "label" => $arr[$month],
-      "value" => [$jum1, $jum2, $jum3, $jum4],
-   ],
-];
-
-echo json_encode($db_data);
+echo json_encode($data);
 
 ?>

@@ -48,7 +48,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="name">Uraian Kegiatan <span class="text-danger">*</span></label>
-                                            <textarea class="form-control" name="uraian_kegiatan" rows="3" placeholder="Alamat ..." required></textarea>
+                                            <textarea class="form-control" name="uraian_kegiatan" rows="3" placeholder="Uraian Kegiatan ..." required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <label for="name">Hasil Kegiatan (opsional)</label>
-                                            <textarea class="form-control" name="hasil_kegiatan" rows="3" placeholder="Alamat ..."></textarea>
+                                            <textarea class="form-control" name="hasil_kegiatan" rows="3" placeholder="Hasil kegiatan ..."></textarea>
                                         </div>
                                     </div>
                                 </div>
