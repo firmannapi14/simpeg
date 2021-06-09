@@ -72,7 +72,7 @@
                                     <div class="card text-white bg-success" style="margin-bottom: 0px;">
                                         <div class="card-body">
                                             <h3>Jenis Presensi: </h3>
-                                            <h4><span id="presensi-out" class="badge badge-info"><? !get_absensi(get_user_login('id_user')) ? '' : get_absensi(get_user_login('id_user'))['jenis_presensi'] ?></span></h4>
+                                            <h4><span id="presensi-out" class="badge badge-info"><?= !get_absensi(get_user_login('id_user')) ? '' : get_absensi(get_user_login('id_user'))['jenis_presensi'] ?></span></h4>
                                             <h3>Presensi Masuk Yang Terekam: </h3>
                                             <h4 id="masuk-out"><?= !get_absensi(get_user_login('id_user')) ? '' : date('H:i', strtotime(get_absensi(get_user_login('id_user'))['jam_masuk'])) ?></h4>
                                             <h3>Presensi Pulang Yang Terekam: </h3>
