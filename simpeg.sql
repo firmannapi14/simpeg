@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 09, 2021 at 10:20 PM
+-- Generation Time: Jun 10, 2021 at 08:43 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -95,8 +95,8 @@ CREATE TABLE `tbl_logbook` (
   `tgl_permohonan` timestamp NULL DEFAULT NULL,
   `tgl_disetujui` timestamp NULL DEFAULT NULL,
   `status` enum('PP','D') DEFAULT NULL,
-  `riwayat_persetujuan` text DEFAULT NULL,
-  `komentar` text DEFAULT NULL,
+  `komentar_lead_sub` text DEFAULT NULL,
+  `komentar_lead_koor` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

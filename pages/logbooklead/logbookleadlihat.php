@@ -8,7 +8,7 @@
     <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="?page=beranda">Beranda</a></li>
         <li class="breadcrumb-item"><a href="?page=logbook">Logbook</a></li>
-        <li class="breadcrumb-item active">Data Logbook <?= $data['nik'] ?></li>
+        <li class="breadcrumb-item active">Data Logbook <?= $data['nama_pegawai'] ?></li>
     </ol>
 </div>
 <main class="c-main">
@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
-                        <div class="card-header">Data Logbook <?= $data['nik'] ?>
+                        <div class="card-header">Data Logbook <?= $data['nama_pegawai'] ?>
                             <a href="?page=logbook" class="btn btn-primary btn-sm float-right"><i class="fa fa-chevron-left"></i> kembali</a>
                         </div>
                         <div class="card-body">
@@ -55,13 +55,15 @@
                                                 <th rowspan="2">Bulan</th>
                                                 <th colspan="3">Tanggal</th>
                                                 <th rowspan="2">Status</th>
-                                                <th rowspan="2">Komentar</th>
+                                                <th colspan="2">Komentar</th>
                                                 <th rowspan="2">Aksi</th>
                                             </tr>
                                             <tr>
                                                 <th>Selesai pengisian</th>
                                                 <th>Permohonan</th>
                                                 <th>Disetujui</th>
+                                                <th>Lead Koor</th>
+                                                <th>Lead Sub</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -80,10 +82,14 @@
                                                 <td><?= !empty($data['tgl_permohonan']) ? date('d F Y H:i:s', strtotime($data['tgl_permohonan'])) : '-' ?></td>
                                                 <td><?= !empty($data['tgl_disetujui']) ? date('d F Y H:i:s', strtotime($data['tgl_disetujui'])) : '-' ?></td>
                                                 <td><?= !empty($data['status']) ? label_status($data['status']) : '-' ?></td>
-                                                <td><?= !empty($data['komentar']) ? $data['komentar'] : '-' ?></td>
+                                                <td><?= !empty($data['komentar_lead_koor']) ? $data['komentar_lead_koor'] : '-' ?></td>
+                                                <td><?= !empty($data['komentar_lead_sub']) ? $data['komentar_lead_sub'] : '-' ?></td>
                                                 <td>
                                                     <a href="?page=logbooklihatisi&id=<?= $data['id'] ?>&idx=<?= $data['id_pegawai'] ?>" class="btn btn-success btn-sm"><i class="fa fa-folder-open"></i> buka</a>
-                                                    <?php if (!empty($data['tgl_selesai_pengisian']) && empty($data['komentar']) && get_user_login('id_rules') == '4') { ?>
+                                                    <?php if (!empty($data['tgl_selesai_pengisian']) && empty($data['komentar_lead_koor']) && get_user_login('id_rules') == '4') { ?>
+                                                    <button class="btn btn-info btn-sm btn-check" type="button" data-id="<?= $data['id'] ?>" data-toggle="modal" data-target="#myModal"><i class="fa fa-comment"></i> komentar</button>
+                                                    <?php } ?>
+                                                    <?php if (!empty($data['tgl_selesai_pengisian']) && empty($data['komentar_lead_sub']) && get_user_login('id_rules') == '3') { ?>
                                                     <button class="btn btn-info btn-sm btn-check" type="button" data-id="<?= $data['id'] ?>" data-toggle="modal" data-target="#myModal"><i class="fa fa-comment"></i> komentar</button>
                                                     <?php } ?>
                                                 </td>
@@ -111,13 +117,14 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <input type="hidden" name="id" value="">
+                                <input type="hidden" name="id_rules" value="<?= get_user_login('id_rules') ?>">
                                 <textarea class="form-control isi" name="hasil_kegiatan" rows="3" placeholder="Tuliskan Komentar ..." style="resize: none;"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary submit-btn" type="button">Save changes</button>
+                    <button class="btn btn-primary submit-btn" type="button">Submit</button>
                 </div>
             </div>
         </div>
@@ -136,6 +143,7 @@ $(document).ready(function(){
 
     $('.submit-btn').on('click',function(){
         var idx = $('input[name="id"]').val(),
+            idRules = $('input[name="id_rules"]').val(),
             comment = $('.isi').val();
             
             if (!comment) {
@@ -144,7 +152,7 @@ $(document).ready(function(){
                 $.ajax({
                     url: 'config/post_comment.php',
                     tyle: 'post',
-                    data: { 'id': idx, 'comment': comment },
+                    data: { 'id': idx, 'id_rules': idRules, 'comment': comment },
                     success: function(res) {
                         data = jQuery.parseJSON(res);
                         if (data.statusCode === 200) {

@@ -2,6 +2,8 @@
     $g = mysqli_query($conn, "SELECT * FROM tbl_logbook
                             WHERE id='$_GET[id]'");
     $data = mysqli_fetch_array($g);
+    $q = mysqli_query($conn, "SELECT * FROM tbl_logbook_items WHERE id_logbook='$_GET[id]'");
+    $count = mysqli_num_rows($q);
 ?>
 
 <div class="c-subheader px-3">
@@ -27,7 +29,7 @@
                     <div class="card card-accent-primary">
                         <div class="card-header">Data Logbook <?= month_ind($data['bulan']) ?> <?= $data['tahun'] ?>
                             <a href="?page=logbook" class="btn btn-primary btn-sm float-right ml-1"><i class="fa fa-chevron-left"></i> kembali</a>
-                            <?php if (empty($data['tgl_selesai_pengisian'])) { ?>
+                            <?php if (empty($data['tgl_selesai_pengisian']) && $count > 0) { ?>
                                 <a href="?page=logbookisifinish&id=<?= $_GET['id'] ?>" class="btn btn-success btn-sm float-right"><i class="fa fa-check-circle"></i> selesaikan pengisian</a>
                             <?php } ?>
                         </div>
