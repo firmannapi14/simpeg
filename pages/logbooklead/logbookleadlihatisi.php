@@ -17,13 +17,14 @@
 <main class="c-main">
     <div class="container-fluid">
         <div class="fade-in">
+            <div class="row message"></div>
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12">
                     <div class="card card-accent-primary">
                         <div class="card-header">Data Logbook <?= $data['nama_pegawai'] ?>
                             <a href="?page=logbooklihat&id=<?= $_GET['idx'] ?>" class="btn btn-primary btn-sm float-right ml-1"><i class="fa fa-chevron-left"></i> kembali</a>
                             <?php if (get_user_login('id_rules') == '3' && empty($data['tgl_disetujui']) && !empty($data['tgl_selesai_pengisian']) && $count > 0) { ?>
-                                <a href="?page=logbookaccisi&id=<?= $_GET['id'] ?>&idx=<?= $_GET['idx'] ?>" class="btn btn-success btn-sm float-right"><i class="fa fa-check-circle"></i> acc logbook</a>
+                                <button class="btn btn-success btn-sm float-right btn-check" type="button" data-id="<?= $_GET['id'] ?>" data-toggle="modal" data-target="#myModal"><i class="fa fa-check-circle"></i> acc logbook</button>
                             <?php } ?>
                         </div>
                         <div class="card-body">
@@ -73,10 +74,10 @@
                                                                 <td><span class="badge badge-info">Permohonan Persetujuan</span></td>
                                                             </tr>
                                                             <?php } ?>
-                                                            <?php if (!empty($data['tgl_disetujui']) || !empty($data['komentar_lead_koor'])) { ?>
+                                                            <?php if (!empty($data['tgl_disetujui']) || !empty($data['komentar_lead_sub'])) { ?>
                                                             <tr>
                                                                 <td><?= get_data_pimpinan($data['id_pimpinan'])['nama_pimpinan'] ?></td>
-                                                                <td><?= date('d M Y H:i:s', strtotime($data['tgl_disetujui'])) ?></td>
+                                                                <td><?= !empty($data['tgl_disetujui']) ? date('d M Y H:i:s', strtotime($data['tgl_disetujui'])) : '-' ?></td>
                                                                 <td><?= !empty($data['komentar_lead_sub']) ? $data['komentar_lead_sub'] : '-' ?></td>
                                                                 <td><?= $data['status'] == 'D' ? label_status($data['status']) : '-' ?></td>
                                                             </tr>
@@ -129,4 +130,62 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-success" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Info</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="">
+                    <input type="hidden" name="id_user" value="<?= get_user_login('id_user') ?>">
+                    <p>Yakin untuk acc logbook ini ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+                    <button class="btn btn-success submit-btn" type="button">Ya</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $('.btn-check').on('click',function(){
+        var id = $(this).data('id');
+        $('input[name="id"]').val(id);
+    });
+
+    $('.submit-btn').on('click',function(){
+        var idx = $('input[name="id"]').val(),
+            idUser = $('input[name="id_user"]').val();
+    
+        $.ajax({
+            url: 'config/acc_logbook.php',
+            tyle: 'post',
+            data: { 'id': idx, 'id_user': idUser },
+            success: function(res) {
+                data = jQuery.parseJSON(res);
+                if (data.statusCode === 200) {
+                    $('#myModal').modal('hide');
+                    message = '<div class="col-lg-12 col-md-12 col-xs-12">';
+                    message += '<div class="alert alert-success alert-dismissible fade show alert-message" role="alert"><strong>Info!</strong> Acc logbook berhasil <i class="fa fa-check-circle"></i>';
+                    message += '<button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div></div>';
+                    $('.message').append(message);
+                    $('.message').show(500);
+                    setTimeout(() => { 
+                        location.reload(true);
+                    }, 1500);
+                } else {
+                    console.log('something wrong !!')
+                }
+            },
+            error: function(err) {
+                console.log(err)
+            }
+        })
+    });
+});
+</script>

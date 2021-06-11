@@ -106,10 +106,10 @@
         </div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-primary" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Isi Komentar</h4>
+                    <h5 class="modal-title">Isi Komentar</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body">
@@ -118,6 +118,7 @@
                             <div class="form-group">
                                 <input type="hidden" name="id" value="">
                                 <input type="hidden" name="id_rules" value="<?= get_user_login('id_rules') ?>">
+                                <input type="hidden" name="id_user" value="<?= get_user_login('id_user') ?>">
                                 <textarea class="form-control isi" name="hasil_kegiatan" rows="3" placeholder="Tuliskan Komentar ..." style="resize: none;"></textarea>
                             </div>
                         </div>
@@ -143,6 +144,7 @@ $(document).ready(function(){
 
     $('.submit-btn').on('click',function(){
         var idx = $('input[name="id"]').val(),
+            idUser = $('input[name="id_user"]').val(),
             idRules = $('input[name="id_rules"]').val(),
             comment = $('.isi').val();
             
@@ -152,7 +154,7 @@ $(document).ready(function(){
                 $.ajax({
                     url: 'config/post_comment.php',
                     tyle: 'post',
-                    data: { 'id': idx, 'id_rules': idRules, 'comment': comment },
+                    data: { 'id': idx, 'id_rules': idRules, 'id_user': idUser, 'comment': comment },
                     success: function(res) {
                         data = jQuery.parseJSON(res);
                         if (data.statusCode === 200) {

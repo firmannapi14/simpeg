@@ -69,7 +69,9 @@
                                             <label for="name">Dokumen (opsional)</label>
                                             <input class="form-control" type="file" name="file" accept=".doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.pdf,.zip,.rar" />
                                             <input type="hidden" name="old_file" value="<?= $data['dokumen'] ?>" />
+                                            <?php if (!empty($data['dokumen'])) { ?>
                                             <a href="file/<?= $data['dokumen'] ?>" target="_blank" class="text-info"><?= $data['dokumen'] ?> <span class="fa fa-check-circle text-success"></span></a>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>
