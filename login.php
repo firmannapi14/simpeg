@@ -43,7 +43,7 @@
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body" style="height: 300px;">
-                <img src="./dist/assets/img/logo-lapan.png" />
+                
                 <form action="login.php" method="post" enctype="multipart/form-data">
                   <div class="input-group mb-3">
                     <div class="input-group-prepend"><span class="input-group-text">
@@ -85,7 +85,7 @@
               <div class="card-body text-center">
                 <div>
                   <h2>
-                    <svg class="c-icon" style="transform:scale(2);margin-right:10px;"><use xlink:href="./coreui/icons/sprites/free.svg#cil-user"></use></svg> SIMPEG PPNPN BALAI LAPAN BIAK
+                  <use xlink:href="./coreui/icons/sprites/free.svg#cil-user"></use></svg> SIMPEG PPNPN <p> BALAI LAPAN BIAK </p>
                   </h2>
                   <p></p>
                   <!-- <p><?= $uuid4->toString() ?></p> -->
